@@ -1,0 +1,17 @@
+{
+  "name": "popular-firebase",
+  "version": "1.0.0",
+  "description": "Script para popular Firestore com dados de infoCards",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "populate": "node populate-firestore.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.0.0"
+  },
+  "devDependencies": {},
+  "keywords": ["firebase", "firestore", "populate", "tuberculose"],
+  "author": "",
+  "license": "MIT"
+}
