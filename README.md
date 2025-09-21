@@ -34,6 +34,9 @@ npm run populate:sinais
 # Popular detalhes de transmissão (subcoleção do card_2)
 npm run populate:transmissao
 
+# Popular detalhes de diagnóstico (subcoleção do card_3)
+npm run populate:diagnostico
+
 # Popular tudo de uma vez
 npm run populate:all
 
@@ -41,11 +44,13 @@ npm run populate:all
 npm run list:infocards
 npm run list:sinais
 npm run list:transmissao
+npm run list:diagnostico
 
 # Limpar coleções
 npm run clear:infocards
 npm run clear:sinais
 npm run clear:transmissao
+npm run clear:diagnostico
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -73,6 +78,13 @@ node populate-transmissao.js list
 node populate-transmissao.js clear
 node populate-transmissao.js details
 node populate-transmissao.js reset
+
+# Diagnóstico (subcoleção do card_3)
+node populate-diagnostico.js populate
+node populate-diagnostico.js list
+node populate-diagnostico.js clear
+node populate-diagnostico.js details
+node populate-diagnostico.js reset
 ```
 
 ## Estrutura dos dados
@@ -114,6 +126,18 @@ Estrutura: `infoCards/card_2/detalhes/[documentos]`
 5. **cronologia-transmissao** - Evolução da transmissibilidade durante tratamento
 6. **criterios-quantitativos** - 5 parâmetros numéricos para avaliação
 7. **populacoes-vulneraveis** - 5 grupos com maior risco de exposição
+
+### Subcoleção `detalhes` do card_3 (Diagnóstico)
+Estrutura: `infoCards/card_3/detalhes/[documentos]`
+
+1. **metodos-laboratoriais** - 4 métodos (baciloscopia, TRM-TB, culturas)
+2. **metodos-imunologicos** - 2 testes (PT, IGRA)
+3. **metodos-imagem** - 2 exames (RX tórax, TC tórax)
+4. **fluxograma-diagnostico** - Algoritmos por população (adulto, PVHIV, criança)
+5. **diagnostico-diferencial** - Diagnósticos diferenciais por forma clínica
+6. **biomarcadores** - 3 marcadores auxiliares (ADA pleural, liquórica, interferon-γ)
+7. **algoritmo-tratamento** - 4 situações de decisão terapêutica
+8. **criterios-especiais** - 3 populações específicas (crianças, PVHIV, contatos TB-DR)
 
 ### Campos dos documentos
 - `title`: Título do card/documento
