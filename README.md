@@ -58,6 +58,9 @@ npm run populate:prevencao
 # Popular detalhes de TB-HIV (subcoleção do card_10)
 npm run populate:tb-hiv
 
+# Popular detalhes de epidemiologia (subcoleção do card_11)
+npm run populate:epidemiologia
+
 # Popular tudo de uma vez
 npm run populate:all
 
@@ -73,6 +76,7 @@ npm run list:reacoes-tb
 npm run list:autocuidado
 npm run list:prevencao
 npm run list:tb-hiv
+npm run list:epidemiologia
 
 # Limpar coleções
 npm run clear:infocards
@@ -86,6 +90,7 @@ npm run clear:reacoes-tb
 npm run clear:autocuidado
 npm run clear:prevencao
 npm run clear:tb-hiv
+npm run clear:epidemiologia
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -169,6 +174,13 @@ node populate-tb-hiv.js list
 node populate-tb-hiv.js clear
 node populate-tb-hiv.js details
 node populate-tb-hiv.js reset
+
+# Epidemiologia (subcoleção do card_11)
+node populate-epidemiologia.js populate
+node populate-epidemiologia.js list
+node populate-epidemiologia.js clear
+node populate-epidemiologia.js details
+node populate-epidemiologia.js reset
 ```
 
 ## Estrutura dos dados
@@ -295,6 +307,18 @@ Estrutura: `infoCards/card_10/detalhes/[documentos]`
 7. **profilaxias** - 4 profilaxias para infecções oportunistas
 8. **criterios-laboratoriais** - 4 parâmetros laboratoriais para monitoramento
 9. **locais-atendimento** - 4 níveis de atenção para coinfecção TB-HIV
+
+### Subcoleção `detalhes` do card_11 (Epidemiologia)
+Estrutura: `infoCards/card_11/detalhes/[documentos]`
+
+1. **dados-nacionais-2023** - Indicadores principais do Brasil (incidência, mortalidade, coinfecção HIV, TB-DR)
+2. **dados-regionais** - 5 regiões brasileiras com ranking e tendências
+3. **tendencias-historicas** - Série histórica 2014-2023 dos principais indicadores
+4. **indicadores-controle** - 6 indicadores de desempenho do programa (cura, abandono, óbito, etc.)
+5. **populacoes-vulneraveis** - 4 grupos de alto risco (população de rua, PPL, indígenas, PVHIV)
+6. **determinantes-sociais** - 5 fatores socioeconômicos associados à TB
+7. **metas-end-tb** - Progresso em direção às metas da Estratégia End TB (2015-2035)
+8. **comparacao-internacional** - Posição do Brasil entre os 10 países com maior carga
 
 ### Campos dos documentos
 - `title`: Título do card/documento

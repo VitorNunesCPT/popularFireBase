@@ -17,7 +17,8 @@
     "populate:autocuidado": "node populate-autocuidado.js populate",
     "populate:prevencao": "node populate-prevencao.js populate",
     "populate:tb-hiv": "node populate-tb-hiv.js populate",
-    "populate:all": "npm run populate:infocards && npm run populate:sinais && npm run populate:transmissao && npm run populate:diagnostico && npm run populate:tratamento && npm run populate:reacoes && npm run populate:interacoes && npm run populate:reacoes-tb && npm run populate:autocuidado && npm run populate:prevencao && npm run populate:tb-hiv",
+    "populate:epidemiologia": "node populate-epidemiologia.js populate",
+    "populate:all": "npm run populate:infocards && npm run populate:sinais && npm run populate:transmissao && npm run populate:diagnostico && npm run populate:tratamento && npm run populate:reacoes && npm run populate:interacoes && npm run populate:reacoes-tb && npm run populate:autocuidado && npm run populate:prevencao && npm run populate:tb-hiv && npm run populate:epidemiologia",
     "list:infocards": "node populate-firestore.js list",
     "list:sinais": "node populate-sinais-sintomas.js list",
     "list:transmissao": "node populate-transmissao.js list",
@@ -29,6 +30,7 @@
     "list:autocuidado": "node populate-autocuidado.js list",
     "list:prevencao": "node populate-prevencao.js list",
     "list:tb-hiv": "node populate-tb-hiv.js list",
+    "list:epidemiologia": "node populate-epidemiologia.js list",
     "clear:infocards": "node populate-firestore.js clear",
     "clear:sinais": "node populate-sinais-sintomas.js clear",
     "clear:transmissao": "node populate-transmissao.js clear",
@@ -40,7 +42,8 @@
     "clear:autocuidado": "node populate-autocuidado.js clear",
     "clear:prevencao": "node populate-prevencao.js clear",
     "clear:tb-hiv": "node populate-tb-hiv.js clear",
-    "reset:all": "npm run clear:infocards && npm run clear:sinais && npm run clear:transmissao && npm run clear:diagnostico && npm run clear:tratamento && npm run clear:reacoes && npm run clear:interacoes && npm run clear:reacoes-tb && npm run clear:autocuidado && npm run clear:prevencao && npm run clear:tb-hiv && npm run populate:all"
+    "clear:epidemiologia": "node populate-epidemiologia.js clear",
+    "reset:all": "npm run clear:infocards && npm run clear:sinais && npm run clear:transmissao && npm run clear:diagnostico && npm run clear:tratamento && npm run clear:reacoes && npm run clear:interacoes && npm run clear:reacoes-tb && npm run clear:autocuidado && npm run clear:prevencao && npm run clear:tb-hiv && npm run clear:epidemiologia && npm run populate:all"
   },
   "dependencies": {
     "firebase-admin": "^12.0.0"
