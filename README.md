@@ -40,6 +40,9 @@ npm run populate:diagnostico
 # Popular detalhes de tratamento (subcoleção do card_4)
 npm run populate:tratamento
 
+# Popular detalhes de reações adversas (subcoleção do card_5)
+npm run populate:reacoes
+
 # Popular tudo de uma vez
 npm run populate:all
 
@@ -49,6 +52,7 @@ npm run list:sinais
 npm run list:transmissao
 npm run list:diagnostico
 npm run list:tratamento
+npm run list:reacoes
 
 # Limpar coleções
 npm run clear:infocards
@@ -56,6 +60,7 @@ npm run clear:sinais
 npm run clear:transmissao
 npm run clear:diagnostico
 npm run clear:tratamento
+npm run clear:reacoes
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -97,6 +102,13 @@ node populate-tratamento.js list
 node populate-tratamento.js clear
 node populate-tratamento.js details
 node populate-tratamento.js reset
+
+# Reações Adversas (subcoleção do card_5)
+node populate-reacoes-adversas.js populate
+node populate-reacoes-adversas.js list
+node populate-reacoes-adversas.js clear
+node populate-reacoes-adversas.js details
+node populate-reacoes-adversas.js reset
 ```
 
 ## Estrutura dos dados
@@ -162,6 +174,17 @@ Estrutura: `infoCards/card_4/detalhes/[documentos]`
 6. **monitoramento-cronico** - 4 parâmetros de acompanhamento (bacteriológico, clínico, radiológico, laboratorial)
 7. **dosagens-especiais** - 5 dosagens e considerações especiais
 8. **criterios-laboratoriais** - 4 exames e parâmetros de monitoramento
+
+### Subcoleção `detalhes` do card_5 (Reações Adversas)
+Estrutura: `infoCards/card_5/detalhes/[documentos]`
+
+1. **reacoes-menores** - 6 reações comuns e menos graves
+2. **reacoes-maiores** - 6 reações graves que requerem atenção especial
+3. **fatores-risco** - 5 condições que aumentam o risco de reações
+4. **estrategias-manejo** - Abordagens para reações menores e maiores
+5. **frequencias-reacoes** - 6 incidências dos principais efeitos adversos
+6. **dosagens-especiais** - 4 doses específicas para prevenção e manejo
+7. **monitoramento-especial** - 4 parâmetros de acompanhamento para grupos de risco
 
 ### Campos dos documentos
 - `title`: Título do card/documento
