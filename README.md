@@ -43,6 +43,9 @@ npm run populate:tratamento
 # Popular detalhes de reações adversas (subcoleção do card_5)
 npm run populate:reacoes
 
+# Popular detalhes de interações medicamentosas (subcoleção do card_6)
+npm run populate:interacoes
+
 # Popular tudo de uma vez
 npm run populate:all
 
@@ -53,6 +56,7 @@ npm run list:transmissao
 npm run list:diagnostico
 npm run list:tratamento
 npm run list:reacoes
+npm run list:interacoes
 
 # Limpar coleções
 npm run clear:infocards
@@ -61,6 +65,7 @@ npm run clear:transmissao
 npm run clear:diagnostico
 npm run clear:tratamento
 npm run clear:reacoes
+npm run clear:interacoes
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -109,6 +114,13 @@ node populate-reacoes-adversas.js list
 node populate-reacoes-adversas.js clear
 node populate-reacoes-adversas.js details
 node populate-reacoes-adversas.js reset
+
+# Interações Medicamentosas (subcoleção do card_6)
+node populate-interacoes-medicamentosas.js populate
+node populate-interacoes-medicamentosas.js list
+node populate-interacoes-medicamentosas.js clear
+node populate-interacoes-medicamentosas.js details
+node populate-interacoes-medicamentosas.js reset
 ```
 
 ## Estrutura dos dados
@@ -185,6 +197,15 @@ Estrutura: `infoCards/card_5/detalhes/[documentos]`
 5. **frequencias-reacoes** - 6 incidências dos principais efeitos adversos
 6. **dosagens-especiais** - 4 doses específicas para prevenção e manejo
 7. **monitoramento-especial** - 4 parâmetros de acompanhamento para grupos de risco
+
+### Subcoleção `detalhes` do card_6 (Interações Medicamentosas)
+Estrutura: `infoCards/card_6/detalhes/[documentos]`
+
+1. **tipos-interacoes** - Classificação por mecanismo (absorção, metabolismo, toxicidade)
+2. **populacoes-especiais** - 4 grupos com maior risco (PVHIV, diabéticos, hepatopatas, nefropatas)
+3. **estrategias-manejo** - 5 abordagens para prevenir e manejar interações
+4. **criterios-monitoramento** - 4 parâmetros para acompanhamento de interações
+5. **dosagens-especiais** - 4 ajustes de dose para evitar interações
 
 ### Campos dos documentos
 - `title`: Título do card/documento
