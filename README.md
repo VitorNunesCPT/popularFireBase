@@ -31,16 +31,21 @@ npm run populate:infocards
 # Popular detalhes dos sinais e sintomas (subcoleção do card_1)
 npm run populate:sinais
 
+# Popular detalhes de transmissão (subcoleção do card_2)
+npm run populate:transmissao
+
 # Popular tudo de uma vez
 npm run populate:all
 
 # Listar documentos
 npm run list:infocards
 npm run list:sinais
+npm run list:transmissao
 
 # Limpar coleções
 npm run clear:infocards
 npm run clear:sinais
+npm run clear:transmissao
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -55,12 +60,19 @@ node populate-firestore.js list
 node populate-firestore.js clear
 node populate-firestore.js reset
 
-# Sinais e Sintomas (subcoleção)
+# Sinais e Sintomas (subcoleção do card_1)
 node populate-sinais-sintomas.js populate
 node populate-sinais-sintomas.js list
 node populate-sinais-sintomas.js clear
 node populate-sinais-sintomas.js details
 node populate-sinais-sintomas.js reset
+
+# Transmissão (subcoleção do card_2)
+node populate-transmissao.js populate
+node populate-transmissao.js list
+node populate-transmissao.js clear
+node populate-transmissao.js details
+node populate-transmissao.js reset
 ```
 
 ## Estrutura dos dados
@@ -80,7 +92,7 @@ Contém 11 documentos principais sobre tuberculose:
 10. **TB-HIV (Coinfecção)** - Especializado (red) → `card_10`
 11. **Epidemiologia** - Contextual (blue) → `card_11`
 
-### Subcoleção `detalhes` do card_1
+### Subcoleção `detalhes` do card_1 (Sinais e Sintomas)
 Estrutura: `infoCards/card_1/detalhes/[documentos]`
 
 1. **sintomas-classicos** - 4 sintomas principais com frequência
@@ -91,6 +103,17 @@ Estrutura: `infoCards/card_1/detalhes/[documentos]`
 6. **exames-complementares** - 5 exames diagnósticos
 7. **monitoramento-tratamento** - 4 parâmetros de acompanhamento
 8. **sinais-alerta** - 5 situações de emergência
+
+### Subcoleção `detalhes` do card_2 (Transmissão)
+Estrutura: `infoCards/card_2/detalhes/[documentos]`
+
+1. **mecanismo-transmissao** - 4 etapas do processo de transmissão
+2. **fatores-risco** - 5 fatores que aumentam o risco
+3. **locais-risco** - 5 ambientes de alto risco
+4. **medidas-controle** - Estratégias administrativas, ambientais e de proteção
+5. **cronologia-transmissao** - Evolução da transmissibilidade durante tratamento
+6. **criterios-quantitativos** - 5 parâmetros numéricos para avaliação
+7. **populacoes-vulneraveis** - 5 grupos com maior risco de exposição
 
 ### Campos dos documentos
 - `title`: Título do card/documento
