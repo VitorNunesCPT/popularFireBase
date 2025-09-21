@@ -37,6 +37,9 @@ npm run populate:transmissao
 # Popular detalhes de diagnóstico (subcoleção do card_3)
 npm run populate:diagnostico
 
+# Popular detalhes de tratamento (subcoleção do card_4)
+npm run populate:tratamento
+
 # Popular tudo de uma vez
 npm run populate:all
 
@@ -45,12 +48,14 @@ npm run list:infocards
 npm run list:sinais
 npm run list:transmissao
 npm run list:diagnostico
+npm run list:tratamento
 
 # Limpar coleções
 npm run clear:infocards
 npm run clear:sinais
 npm run clear:transmissao
 npm run clear:diagnostico
+npm run clear:tratamento
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -85,6 +90,13 @@ node populate-diagnostico.js list
 node populate-diagnostico.js clear
 node populate-diagnostico.js details
 node populate-diagnostico.js reset
+
+# Tratamento (subcoleção do card_4)
+node populate-tratamento.js populate
+node populate-tratamento.js list
+node populate-tratamento.js clear
+node populate-tratamento.js details
+node populate-tratamento.js reset
 ```
 
 ## Estrutura dos dados
@@ -138,6 +150,18 @@ Estrutura: `infoCards/card_3/detalhes/[documentos]`
 6. **biomarcadores** - 3 marcadores auxiliares (ADA pleural, liquórica, interferon-γ)
 7. **algoritmo-tratamento** - 4 situações de decisão terapêutica
 8. **criterios-especiais** - 3 populações específicas (crianças, PVHIV, contatos TB-DR)
+
+### Subcoleção `detalhes` do card_4 (Tratamento)
+Estrutura: `infoCards/card_4/detalhes/[documentos]`
+
+1. **esquemas-basicos** - 4 esquemas padrão (adultos, crianças, formas graves)
+2. **esquemas-tbdr** - 2 esquemas para TB drogarresistente (MDR, XDR)
+3. **esquemas-iltb** - 4 esquemas para infecção latente (6H, 9H, 4R, 3HP)
+4. **locais-tratamento** - 4 níveis de atenção (básica, secundária, terciária, hospitalar)
+5. **modalidades-tdo** - 4 modalidades de TDO (domiciliar, unidade, compartilhado, institucional)
+6. **monitoramento-cronico** - 4 parâmetros de acompanhamento (bacteriológico, clínico, radiológico, laboratorial)
+7. **dosagens-especiais** - 5 dosagens e considerações especiais
+8. **criterios-laboratoriais** - 4 exames e parâmetros de monitoramento
 
 ### Campos dos documentos
 - `title`: Título do card/documento
