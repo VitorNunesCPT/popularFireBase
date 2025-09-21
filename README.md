@@ -55,6 +55,9 @@ npm run populate:autocuidado
 # Popular detalhes de prevenção (subcoleção do card_9)
 npm run populate:prevencao
 
+# Popular detalhes de TB-HIV (subcoleção do card_10)
+npm run populate:tb-hiv
+
 # Popular tudo de uma vez
 npm run populate:all
 
@@ -69,6 +72,7 @@ npm run list:interacoes
 npm run list:reacoes-tb
 npm run list:autocuidado
 npm run list:prevencao
+npm run list:tb-hiv
 
 # Limpar coleções
 npm run clear:infocards
@@ -81,6 +85,7 @@ npm run clear:interacoes
 npm run clear:reacoes-tb
 npm run clear:autocuidado
 npm run clear:prevencao
+npm run clear:tb-hiv
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -157,6 +162,13 @@ node populate-prevencao.js list
 node populate-prevencao.js clear
 node populate-prevencao.js details
 node populate-prevencao.js reset
+
+# TB-HIV (subcoleção do card_10)
+node populate-tb-hiv.js populate
+node populate-tb-hiv.js list
+node populate-tb-hiv.js clear
+node populate-tb-hiv.js details
+node populate-tb-hiv.js reset
 ```
 
 ## Estrutura dos dados
@@ -270,6 +282,19 @@ Estrutura: `infoCards/card_9/detalhes/[documentos]`
 4. **responsaveis** - 6 atores envolvidos na prevenção
 5. **implementacao** - 8 formas de operacionalizar as medidas
 6. **metas** - 6 objetivos quantitativos para prevenção
+
+### Subcoleção `detalhes` do card_10 (TB-HIV Coinfecção)
+Estrutura: `infoCards/card_10/detalhes/[documentos]`
+
+1. **interacoes-medicamentos** - Interações entre rifampicina/rifabutina e antirretrovirais
+2. **epidemiologia** - 4 aspectos epidemiológicos da coinfecção TB-HIV
+3. **cronograma-tarv** - 4 critérios para início do TARV conforme CD4+
+4. **cuidados-especiais** - Abordagens para diagnóstico, tratamento e monitoramento
+5. **iris** - 3 tipos de Síndrome Inflamatória de Reconstituição Imune
+6. **esquemas-terapeuticos** - 4 esquemas de tratamento conforme ARV
+7. **profilaxias** - 4 profilaxias para infecções oportunistas
+8. **criterios-laboratoriais** - 4 parâmetros laboratoriais para monitoramento
+9. **locais-atendimento** - 4 níveis de atenção para coinfecção TB-HIV
 
 ### Campos dos documentos
 - `title`: Título do card/documento
