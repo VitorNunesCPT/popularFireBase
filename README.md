@@ -46,6 +46,9 @@ npm run populate:reacoes
 # Popular detalhes de interações medicamentosas (subcoleção do card_6)
 npm run populate:interacoes
 
+# Popular detalhes de reações da tuberculose (subcoleção do card_7)
+npm run populate:reacoes-tb
+
 # Popular tudo de uma vez
 npm run populate:all
 
@@ -57,6 +60,7 @@ npm run list:diagnostico
 npm run list:tratamento
 npm run list:reacoes
 npm run list:interacoes
+npm run list:reacoes-tb
 
 # Limpar coleções
 npm run clear:infocards
@@ -66,6 +70,7 @@ npm run clear:diagnostico
 npm run clear:tratamento
 npm run clear:reacoes
 npm run clear:interacoes
+npm run clear:reacoes-tb
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -121,6 +126,13 @@ node populate-interacoes-medicamentosas.js list
 node populate-interacoes-medicamentosas.js clear
 node populate-interacoes-medicamentosas.js details
 node populate-interacoes-medicamentosas.js reset
+
+# Reações da Tuberculose (subcoleção do card_7)
+node populate-reacoes-tuberculose.js populate
+node populate-reacoes-tuberculose.js list
+node populate-reacoes-tuberculose.js clear
+node populate-reacoes-tuberculose.js details
+node populate-reacoes-tuberculose.js reset
 ```
 
 ## Estrutura dos dados
@@ -206,6 +218,15 @@ Estrutura: `infoCards/card_6/detalhes/[documentos]`
 3. **estrategias-manejo** - 5 abordagens para prevenir e manejar interações
 4. **criterios-monitoramento** - 4 parâmetros para acompanhamento de interações
 5. **dosagens-especiais** - 4 ajustes de dose para evitar interações
+
+### Subcoleção `detalhes` do card_7 (Reações da Tuberculose)
+Estrutura: `infoCards/card_7/detalhes/[documentos]`
+
+1. **reacoes-medicamentos** - Efeitos adversos (menores e maiores) aos medicamentos
+2. **eventos-vacina** - 5 eventos adversos da vacinação BCG
+3. **populacoes-risco** - 5 grupos com maior risco de reações adversas
+4. **dosagens-vitamina** - 4 dosagens de piridoxina para prevenção
+5. **criterios-monitoramento** - 4 parâmetros para acompanhamento de reações
 
 ### Campos dos documentos
 - `title`: Título do card/documento
