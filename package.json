@@ -15,7 +15,8 @@
     "populate:interacoes": "node populate-interacoes-medicamentosas.js populate",
     "populate:reacoes-tb": "node populate-reacoes-tuberculose.js populate",
     "populate:autocuidado": "node populate-autocuidado.js populate",
-    "populate:all": "npm run populate:infocards && npm run populate:sinais && npm run populate:transmissao && npm run populate:diagnostico && npm run populate:tratamento && npm run populate:reacoes && npm run populate:interacoes && npm run populate:reacoes-tb && npm run populate:autocuidado",
+    "populate:prevencao": "node populate-prevencao.js populate",
+    "populate:all": "npm run populate:infocards && npm run populate:sinais && npm run populate:transmissao && npm run populate:diagnostico && npm run populate:tratamento && npm run populate:reacoes && npm run populate:interacoes && npm run populate:reacoes-tb && npm run populate:autocuidado && npm run populate:prevencao",
     "list:infocards": "node populate-firestore.js list",
     "list:sinais": "node populate-sinais-sintomas.js list",
     "list:transmissao": "node populate-transmissao.js list",
@@ -25,6 +26,7 @@
     "list:interacoes": "node populate-interacoes-medicamentosas.js list",
     "list:reacoes-tb": "node populate-reacoes-tuberculose.js list",
     "list:autocuidado": "node populate-autocuidado.js list",
+    "list:prevencao": "node populate-prevencao.js list",
     "clear:infocards": "node populate-firestore.js clear",
     "clear:sinais": "node populate-sinais-sintomas.js clear",
     "clear:transmissao": "node populate-transmissao.js clear",
@@ -34,7 +36,8 @@
     "clear:interacoes": "node populate-interacoes-medicamentosas.js clear",
     "clear:reacoes-tb": "node populate-reacoes-tuberculose.js clear",
     "clear:autocuidado": "node populate-autocuidado.js clear",
-    "reset:all": "npm run clear:infocards && npm run clear:sinais && npm run clear:transmissao && npm run clear:diagnostico && npm run clear:tratamento && npm run clear:reacoes && npm run clear:interacoes && npm run clear:reacoes-tb && npm run clear:autocuidado && npm run populate:all"
+    "clear:prevencao": "node populate-prevencao.js clear",
+    "reset:all": "npm run clear:infocards && npm run clear:sinais && npm run clear:transmissao && npm run clear:diagnostico && npm run clear:tratamento && npm run clear:reacoes && npm run clear:interacoes && npm run clear:reacoes-tb && npm run clear:autocuidado && npm run clear:prevencao && npm run populate:all"
   },
   "dependencies": {
     "firebase-admin": "^12.0.0"

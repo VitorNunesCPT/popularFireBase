@@ -52,6 +52,9 @@ npm run populate:reacoes-tb
 # Popular detalhes de autocuidado (subcoleção do card_8)
 npm run populate:autocuidado
 
+# Popular detalhes de prevenção (subcoleção do card_9)
+npm run populate:prevencao
+
 # Popular tudo de uma vez
 npm run populate:all
 
@@ -65,6 +68,7 @@ npm run list:reacoes
 npm run list:interacoes
 npm run list:reacoes-tb
 npm run list:autocuidado
+npm run list:prevencao
 
 # Limpar coleções
 npm run clear:infocards
@@ -76,6 +80,7 @@ npm run clear:reacoes
 npm run clear:interacoes
 npm run clear:reacoes-tb
 npm run clear:autocuidado
+npm run clear:prevencao
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -145,6 +150,13 @@ node populate-autocuidado.js list
 node populate-autocuidado.js clear
 node populate-autocuidado.js details
 node populate-autocuidado.js reset
+
+# Prevenção (subcoleção do card_9)
+node populate-prevencao.js populate
+node populate-prevencao.js list
+node populate-prevencao.js clear
+node populate-prevencao.js details
+node populate-prevencao.js reset
 ```
 
 ## Estrutura dos dados
@@ -248,6 +260,16 @@ Estrutura: `infoCards/card_8/detalhes/[documentos]`
 3. **locais-tempos** - 4 orientações sobre onde e quando praticar
 4. **dosagens** - 3 doses importantes de medicamentos
 5. **sinais-alerta** - 8 sintomas que requerem atenção médica
+
+### Subcoleção `detalhes` do card_9 (Prevenção)
+Estrutura: `infoCards/card_9/detalhes/[documentos]`
+
+1. **estrategias** - 6 principais abordagens para prevenir a tuberculose
+2. **locais** - 7 ambientes onde as medidas preventivas são aplicadas
+3. **momentos** - 7 momentos para aplicar as medidas preventivas
+4. **responsaveis** - 6 atores envolvidos na prevenção
+5. **implementacao** - 8 formas de operacionalizar as medidas
+6. **metas** - 6 objetivos quantitativos para prevenção
 
 ### Campos dos documentos
 - `title`: Título do card/documento
