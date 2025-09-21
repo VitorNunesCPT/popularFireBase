@@ -49,6 +49,9 @@ npm run populate:interacoes
 # Popular detalhes de reações da tuberculose (subcoleção do card_7)
 npm run populate:reacoes-tb
 
+# Popular detalhes de autocuidado (subcoleção do card_8)
+npm run populate:autocuidado
+
 # Popular tudo de uma vez
 npm run populate:all
 
@@ -61,6 +64,7 @@ npm run list:tratamento
 npm run list:reacoes
 npm run list:interacoes
 npm run list:reacoes-tb
+npm run list:autocuidado
 
 # Limpar coleções
 npm run clear:infocards
@@ -71,6 +75,7 @@ npm run clear:tratamento
 npm run clear:reacoes
 npm run clear:interacoes
 npm run clear:reacoes-tb
+npm run clear:autocuidado
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -133,6 +138,13 @@ node populate-reacoes-tuberculose.js list
 node populate-reacoes-tuberculose.js clear
 node populate-reacoes-tuberculose.js details
 node populate-reacoes-tuberculose.js reset
+
+# Autocuidado (subcoleção do card_8)
+node populate-autocuidado.js populate
+node populate-autocuidado.js list
+node populate-autocuidado.js clear
+node populate-autocuidado.js details
+node populate-autocuidado.js reset
 ```
 
 ## Estrutura dos dados
@@ -227,6 +239,15 @@ Estrutura: `infoCards/card_7/detalhes/[documentos]`
 3. **populacoes-risco** - 5 grupos com maior risco de reações adversas
 4. **dosagens-vitamina** - 4 dosagens de piridoxina para prevenção
 5. **criterios-monitoramento** - 4 parâmetros para acompanhamento de reações
+
+### Subcoleção `detalhes` do card_8 (Dicas de Autocuidado)
+Estrutura: `infoCards/card_8/detalhes/[documentos]`
+
+1. **acoes-cuidado** - 4 categorias de práticas essenciais (coleta, adesao, monitoramento, controle)
+2. **importancia** - 5 aspectos sobre a importância do autocuidado
+3. **locais-tempos** - 4 orientações sobre onde e quando praticar
+4. **dosagens** - 3 doses importantes de medicamentos
+5. **sinais-alerta** - 8 sintomas que requerem atenção médica
 
 ### Campos dos documentos
 - `title`: Título do card/documento
