@@ -22,48 +22,84 @@ Edite o arquivo `firebase-config.js` e substitua `'seu-project-id'` pelo ID do s
 
 ## Como usar
 
-### Comandos disponíveis:
+### Comandos via NPM Scripts:
 
 ```bash
-# Popular a coleção com os dados
+# Popular apenas infoCards
+npm run populate:infocards
+
+# Popular detalhes dos sinais e sintomas (subcoleção do card_1)
+npm run populate:sinais
+
+# Popular tudo de uma vez
+npm run populate:all
+
+# Listar documentos
+npm run list:infocards
+npm run list:sinais
+
+# Limpar coleções
+npm run clear:infocards
+npm run clear:sinais
+
+# Reset completo (limpa tudo e popula novamente)
+npm run reset:all
+```
+
+### Comandos diretos:
+
+```bash
+# InfoCards
 node populate-firestore.js populate
-
-# Listar todos os documentos da coleção
 node populate-firestore.js list
-
-# Limpar todos os documentos da coleção
 node populate-firestore.js clear
-
-# Limpar e popular novamente
 node populate-firestore.js reset
 
-# Ver ajuda
-node populate-firestore.js
+# Sinais e Sintomas (subcoleção)
+node populate-sinais-sintomas.js populate
+node populate-sinais-sintomas.js list
+node populate-sinais-sintomas.js clear
+node populate-sinais-sintomas.js details
+node populate-sinais-sintomas.js reset
 ```
 
 ## Estrutura dos dados
 
-A coleção `infoCards` contém 11 documentos com informações sobre tuberculose:
+### Coleção `infoCards`
+Contém 11 documentos principais sobre tuberculose:
 
-1. **Sinais e Sintomas** - Essencial (danger)
-2. **Transmissão** - Importante (info)
-3. **Diagnóstico** - Fundamental (blue)
-4. **Sobre o Tratamento** - Fundamental (success)
-5. **Reações Adversas** - Atenção (warning)
-6. **Interações Medicamentosas** - Cuidado (purple)
-7. **Reações da Tuberculose** - Informativo (orange)
-8. **Dicas de Autocuidado** - Prático (pink)
-9. **Prevenção** - Preventivo (teal)
-10. **TB-HIV (Coinfecção)** - Especializado (red)
-11. **Epidemiologia** - Contextual (blue)
+1. **Sinais e Sintomas** - Essencial (danger) → `card_1`
+2. **Transmissão** - Importante (info) → `card_2`
+3. **Diagnóstico** - Fundamental (blue) → `card_3`
+4. **Sobre o Tratamento** - Fundamental (success) → `card_4`
+5. **Reações Adversas** - Atenção (warning) → `card_5`
+6. **Interações Medicamentosas** - Cuidado (purple) → `card_6`
+7. **Reações da Tuberculose** - Informativo (orange) → `card_7`
+8. **Dicas de Autocuidado** - Prático (pink) → `card_8`
+9. **Prevenção** - Preventivo (teal) → `card_9`
+10. **TB-HIV (Coinfecção)** - Especializado (red) → `card_10`
+11. **Epidemiologia** - Contextual (blue) → `card_11`
 
-Cada documento contém:
-- `title`: Título do card
+### Subcoleção `detalhes` do card_1
+Estrutura: `infoCards/card_1/detalhes/[documentos]`
+
+1. **sintomas-classicos** - 4 sintomas principais com frequência
+2. **sintomas-formas** - Sintomas por forma clínica (primária, secundária, miliar)
+3. **sintomas-pvhiv** - 4 sintomas para rastreamento em PVHIV
+4. **locais-avaliacao** - 5 locais de busca ativa
+5. **criterios-sr** - 5 critérios por população
+6. **exames-complementares** - 5 exames diagnósticos
+7. **monitoramento-tratamento** - 4 parâmetros de acompanhamento
+8. **sinais-alerta** - 5 situações de emergência
+
+### Campos dos documentos
+- `title`: Título do card/documento
 - `description`: Descrição do conteúdo
-- `iconName`: Nome do ícone (Lucide React)
+- `iconName`: Nome do ícone (Lucide React) - apenas infoCards
 - `status`: Status/categoria do card
-- `theme`: Tema de cores
+- `theme`: Tema de cores - apenas infoCards
 - `order`: Ordem de exibição
+- `data`: Array com os dados específicos - apenas subcoleção
 - `createdAt`: Data de criação
 - `updatedAt`: Data de atualização
 

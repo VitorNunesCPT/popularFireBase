@@ -182,14 +182,21 @@ async function main() {
       await clearCollection();
       await populateInfoCards();
       break;
+    case 'sinais-sintomas':
+      console.log('🔄 Executando script de sinais e sintomas...');
+      require('./populate-sinais-sintomas');
+      break;
     default:
       console.log('📖 Comandos disponíveis:');
-      console.log('  populate - Popula a coleção com os dados');
-      console.log('  clear    - Limpa todos os documentos da coleção');
-      console.log('  list     - Lista todos os documentos da coleção');
-      console.log('  reset    - Limpa e popula novamente a coleção');
+      console.log('  populate - Popula a coleção infoCards com os dados');
+      console.log('  clear    - Limpa todos os documentos da coleção infoCards');
+      console.log('  list     - Lista todos os documentos da coleção infoCards');
+      console.log('  reset    - Limpa e popula novamente a coleção infoCards');
+      console.log('  sinais-sintomas - Executa o script de sinais e sintomas');
       console.log('');
-      console.log('💡 Exemplo: node populate-firestore.js populate');
+      console.log('💡 Exemplos:');
+      console.log('  node populate-firestore.js populate');
+      console.log('  node populate-sinais-sintomas.js populate');
   }
 
   process.exit(0);

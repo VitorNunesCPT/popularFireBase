@@ -5,7 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "populate": "node populate-firestore.js"
+    "populate": "node populate-firestore.js",
+    "populate:infocards": "node populate-firestore.js populate",
+    "populate:sinais": "node populate-sinais-sintomas.js populate",
+    "populate:all": "npm run populate:infocards && npm run populate:sinais",
+    "list:infocards": "node populate-firestore.js list",
+    "list:sinais": "node populate-sinais-sintomas.js list",
+    "clear:infocards": "node populate-firestore.js clear",
+    "clear:sinais": "node populate-sinais-sintomas.js clear",
+    "reset:all": "npm run clear:infocards && npm run clear:sinais && npm run populate:all"
   },
   "dependencies": {
     "firebase-admin": "^12.0.0"
