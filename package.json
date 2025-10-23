@@ -43,7 +43,15 @@
     "clear:prevencao": "node populate-prevencao.js clear",
     "clear:tb-hiv": "node populate-tb-hiv.js clear",
     "clear:epidemiologia": "node populate-epidemiologia.js clear",
-    "reset:all": "npm run clear:infocards && npm run clear:sinais && npm run clear:transmissao && npm run clear:diagnostico && npm run clear:tratamento && npm run clear:reacoes && npm run clear:interacoes && npm run clear:reacoes-tb && npm run clear:autocuidado && npm run clear:prevencao && npm run clear:tb-hiv && npm run clear:epidemiologia && npm run populate:all"
+    "reset:all": "npm run clear:infocards && npm run clear:sinais && npm run clear:transmissao && npm run clear:diagnostico && npm run clear:tratamento && npm run clear:reacoes && npm run clear:interacoes && npm run clear:reacoes-tb && npm run clear:autocuidado && npm run clear:prevencao && npm run clear:tb-hiv && npm run clear:epidemiologia && npm run populate:all",
+    "user:create": "node populate-usuarios.js create",
+    "user:list": "node populate-usuarios.js list",
+    "user:details": "node populate-usuarios.js details",
+    "user:clear": "node populate-usuarios.js clear",
+    "user:reset": "node populate-usuarios.js reset",
+    "user:medicamentos": "node populate-usuarios.js list-medicamentos",
+    "user:sintomas": "node populate-usuarios.js list-sintomas",
+    "user:registros": "node populate-usuarios.js list-registros"
   },
   "dependencies": {
     "firebase-admin": "^12.0.0"
