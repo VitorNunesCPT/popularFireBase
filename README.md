@@ -1,6 +1,47 @@
 # Popular Firebase - Projeto de População do Firestore
 
-Este projeto permite popular o banco de dados Firestore com dados da coleção `infoCards` sobre tuberculose.
+> **Sistema de Acompanhamento de Tratamento de Tuberculose**
+>
+> Backend Firebase + Scripts de População + Funções de Integração
+
+Este projeto permite popular o banco de dados Firestore com:
+1. **Dados educacionais** - Coleção `infoCards` sobre tuberculose (conteúdo estático)
+2. **Dados de usuários** - Sistema de acompanhamento de tratamento com medicamentos, sintomas e registros de dose
+
+---
+
+## 📚 Documentação Completa
+
+| Documento | Descrição | Quando Usar |
+|-----------|-----------|-------------|
+| **[OVERVIEW.md](./OVERVIEW.md)** | Visão geral do projeto, arquitetura e conceitos | 🆕 Primeira vez no projeto |
+| **[SETUP.md](./SETUP.md)** | Guia passo a passo de instalação | 🔧 Configuração inicial |
+| **[DIAGRAMAS.md](./DIAGRAMAS.md)** | Fluxos completos em Mermaid | 🎨 Entender lógica e fluxos |
+| **[API.md](./API.md)** | Referência de funções | 💻 Durante desenvolvimento |
+| **[FAQ.md](./FAQ.md)** | Perguntas frequentes | ❓ Dúvidas comuns |
+| **README.md** | Este arquivo - Referência rápida de comandos | 📖 Consulta diária |
+
+---
+
+## 🚀 Início Rápido
+
+```bash
+# 1. Instalar dependências
+npm install
+
+# 2. Configurar Firebase (veja SETUP.md)
+# - Criar projeto no Firebase Console
+# - Baixar serviceAccountKey.json
+# - Colocar na raiz do projeto
+
+# 3. Testar
+npm run populate:infocards
+npm run user:create
+
+# 4. Pronto! Dados estão no Firestore
+```
+
+**Primeira vez?** Leia [SETUP.md](./SETUP.md) para guia completo.
 
 ## Configuração
 
@@ -21,6 +62,33 @@ npm install
 Edite o arquivo `firebase-config.js` e substitua `'seu-project-id'` pelo ID do seu projeto Firebase.
 
 ## Como usar
+
+### Estrutura do Banco de Dados
+
+O Firestore está organizado em duas estruturas principais:
+
+#### 1. InfoCards (Conteúdo Estático - Raiz do Firestore)
+```
+/infoCards/{cardId}
+  └── /detalhes/{docId}
+```
+Contém informações educacionais sobre tuberculose, compartilhadas por todos os usuários.
+
+#### 2. Usuários (Dados Dinâmicos - Por Usuário)
+```
+/users/{userId}
+  ├── (dados do perfil: nome, email, dataNascimento, telefone)
+  ├── /medicamentos/{medId}
+  │     └── (nome, dosagem, frequencia, horarios[], dataInicio, dataFim, observacoes)
+  ├── /sintomas/{sintomaId}
+  │     └── (data, descricao, intensidade, observacoes)
+  └── /registrosDeDose/{registroId}
+        └── (medicamentoRef, nomeMedicamento, dosagem, horarioAgendado, horarioTomado, status)
+```
+
+---
+
+## Comandos - InfoCards (Tuberculose)
 
 ### Comandos via NPM Scripts:
 
@@ -319,6 +387,196 @@ Estrutura: `infoCards/card_11/detalhes/[documentos]`
 6. **determinantes-sociais** - 5 fatores socioeconômicos associados à TB
 7. **metas-end-tb** - Progresso em direção às metas da Estratégia End TB (2015-2035)
 8. **comparacao-internacional** - Posição do Brasil entre os 10 países com maior carga
+
+---
+
+## 🔐 Integração com Firebase Authentication
+
+### ⚡ Fluxo Recomendado:
+
+**No seu aplicativo**, a estrutura de usuários no Firestore deve ser criada automaticamente quando o usuário se registra via Firebase Authentication.
+
+### 📋 Como Funciona:
+
+1. **Usuário se registra** → Firebase Authentication cria UID
+2. **App cria perfil** → Usa UID como ID do documento em `/users/{uid}`
+3. **Durante uso** → App adiciona medicamentos, sintomas e registros
+
+### 💻 Implementação no App:
+
+```javascript
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserProfile } from './auth-integration';
+
+// 1. Registro via Authentication
+async function handleSignUp(email, password, nome) {
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+  // 2. Cria perfil no Firestore (UID do Auth = ID do documento)
+  await createUserProfile(userCredential.user.uid, {
+    nome: nome,
+    email: email,
+    telefone: null,
+    dataNascimento: null
+  });
+}
+```
+
+### 🛠️ Funções Disponíveis (`auth-integration.js`):
+
+**Gerenciamento de Perfil:**
+- `createUserProfile(userId, userData)` - Cria perfil após registro
+- `getUserProfile(userId)` - Busca perfil completo
+- `updateUserProfile(userId, updates)` - Atualiza dados
+- `deleteUserProfile(userId)` - Remove usuário e subcoleções
+
+**Adicionar Dados (durante uso do app):**
+- `addMedicamento(userId, medicamentoData)` - Tela "Novo Lembrete"
+- `addSintoma(userId, sintomaData)` - Tela "Registrar Sintoma"
+- `addRegistroDose(userId, registroData)` - Marcar como tomado/pulado
+
+### 📱 Exemplos Práticos:
+
+**Tela "Novo Lembrete":**
+```javascript
+await addMedicamento(user.uid, {
+  nome: "Rifampicina",
+  dosagem: "600mg",
+  frequencia: "diaria",
+  horarios: ["08:00", "20:00"],
+  dataInicio: new Date()
+});
+```
+
+**Tela "Registrar Sintoma":**
+```javascript
+await addSintoma(user.uid, {
+  data: new Date(),
+  descricao: "Tosse seca, febre",
+  intensidade: "media"
+});
+```
+
+**Marcar medicamento como tomado:**
+```javascript
+await addRegistroDose(user.uid, {
+  medicamentoId: medicamento.id,
+  nomeMedicamento: medicamento.nome,
+  dosagem: medicamento.dosagem,
+  horarioAgendado: new Date("2025-10-23T08:00:00"),
+  horarioTomado: new Date(),
+  status: "tomado"
+});
+```
+
+📄 **Veja exemplos completos em:** [`auth-integration.js`](./auth-integration.js)
+
+---
+
+## Comandos - Usuários (Testes e Desenvolvimento)
+
+⚠️ **Nota:** Os comandos abaixo são apenas para TESTE local. No app real, use as funções do `auth-integration.js`.
+
+### Comandos via NPM Scripts:
+
+```bash
+# Criar usuário de teste com todos os dados
+npm run user:create
+
+# Listar todos os usuários
+npm run user:list
+
+# Ver detalhes completos de um usuário
+npm run user:details
+
+# Listar medicamentos do usuário
+npm run user:medicamentos
+
+# Listar sintomas do usuário
+npm run user:sintomas
+
+# Listar registros de dose do usuário
+npm run user:registros
+
+# Limpar todos os usuários
+npm run user:clear
+
+# Reset (limpa e recria usuário de teste)
+npm run user:reset
+```
+
+### Comandos diretos:
+
+```bash
+# Gerenciar usuários
+node populate-usuarios.js create
+node populate-usuarios.js list
+node populate-usuarios.js details [userId]
+node populate-usuarios.js clear
+node populate-usuarios.js reset
+
+# Listar subcoleções
+node populate-usuarios.js list-medicamentos [userId]
+node populate-usuarios.js list-sintomas [userId]
+node populate-usuarios.js list-registros [userId] [limit]
+
+# Se userId não for especificado, usa "usuario_teste_001"
+# Se limit não for especificado, usa 20
+```
+
+### Dados de Exemplo Incluídos:
+
+Ao executar `npm run user:create`, o sistema cria:
+
+**Usuário:**
+- João Silva (usuario_teste_001)
+- Email: joao.silva@exemplo.com
+
+**5 Medicamentos:**
+1. Rifampicina 600mg - 2x ao dia (08:00, 20:00)
+2. Isoniazida 300mg - 1x ao dia (08:00)
+3. Pirazinamida 1500mg - 1x ao dia (08:00)
+4. Etambutol 1200mg - 1x ao dia (08:00)
+5. Vitamina B6 50mg - 1x ao dia (08:00)
+
+**7 Sintomas registrados** ao longo de uma semana (15/10 a 22/10):
+- Tosse, febre, sudorese noturna, dor no peito, cansaço
+- Com diferentes intensidades (baixa, média, alta)
+
+**15 Registros de dose:**
+- Histórico de medicamentos tomados e pulados
+- Diferentes horários e status
+
+### Estrutura das Subcoleções:
+
+#### Medicamentos (`/users/{userId}/medicamentos/{medId}`)
+- `nome`: Nome do medicamento
+- `dosagem`: Dose (ex: "600mg")
+- `frequencia`: Tipo de frequência ("diaria", "semanal", "personalizada")
+- `horarios`: Array de horários (ex: ["08:00", "20:00"])
+- `observacoes`: Observações importantes
+- `dataInicio`: Timestamp de início do tratamento
+- `dataFim`: Timestamp de fim (pode ser null)
+- `criadoEm`: Timestamp de criação
+
+#### Sintomas (`/users/{userId}/sintomas/{sintomaId}`)
+- `data`: Timestamp da data do sintoma
+- `descricao`: Descrição do sintoma
+- `intensidade`: "baixa", "media" ou "alta"
+- `observacoes`: Observações adicionais
+- `criadoEm`: Timestamp de criação do registro
+
+#### Registros de Dose (`/users/{userId}/registrosDeDose/{registroId}`)
+- `medicamentoRef`: Referência ao documento do medicamento
+- `nomeMedicamento`: Nome (denormalizado para exibição)
+- `dosagem`: Dosagem (denormalizado)
+- `horarioAgendado`: Timestamp do horário previsto
+- `horarioTomado`: Timestamp de quando foi tomado (null se pulado)
+- `status`: "tomado" ou "pulado"
+
+---
+
+## Estrutura dos InfoCards
 
 ### Campos dos documentos
 - `title`: Título do card/documento
