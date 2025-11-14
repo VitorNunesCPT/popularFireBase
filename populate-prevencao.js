@@ -1,114 +1,46 @@
-const { db } = require('./firebase-config');
-const {
-  estrategias,
-  locais,
-  momentos,
-  responsaveis,
-  implementacao,
-  metas,
-} = require('./data/prevencao-data');
+const { db } = require("./firebase-config");
+const { prevencao5w2h } = require("./data/prevencao-data");
 
 async function populatePrevencao() {
   try {
-    console.log('🔄 Iniciando população da subcoleção em card_9...');
+    console.log("🔄 Iniciando população da subcoleção em card_9...");
 
     const batch = db.batch();
+    const card9Ref = db.collection("infoCards").doc("card_9");
+    const docRef = card9Ref.collection("detalhes").doc("prevencao-5w2h");
+    const timestamp = new Date();
 
-    // Referência para o card_9 (Prevenção)
-    const card9Ref = db.collection('infoCards').doc('card_9');
-
-    // Estratégias de prevenção
-    const estrategiasRef = card9Ref.collection('detalhes').doc('estrategias');
-    batch.set(estrategiasRef, {
-      title: "Estratégias de Prevenção",
-      description: "Principais abordagens para prevenir a tuberculose",
+    batch.set(docRef, {
+      title: "Prevenção da Tuberculose: Avaliação 5W2H",
+      description:
+        "Conteúdo estruturado que reúne as medidas de prevenção da TB em O Quê, Por Quê, Onde, Quando, Quem, Como e Quanto.",
       order: 1,
-      data: estrategias,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-
-    // Locais de implementação
-    const locaisRef = card9Ref.collection('detalhes').doc('locais');
-    batch.set(locaisRef, {
-      title: "Locais de Implementação",
-      description: "Ambientes onde as medidas preventivas são aplicadas",
-      order: 2,
-      data: locais,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-
-    // Momentos de intervenção
-    const momentosRef = card9Ref.collection('detalhes').doc('momentos');
-    batch.set(momentosRef, {
-      title: "Momentos de Intervenção",
-      description: "Quando aplicar as medidas preventivas",
-      order: 3,
-      data: momentos,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-
-    // Responsáveis
-    const responsaveisRef = card9Ref.collection('detalhes').doc('responsaveis');
-    batch.set(responsaveisRef, {
-      title: "Responsáveis",
-      description: "Atores envolvidos na prevenção da tuberculose",
-      order: 4,
-      data: responsaveis,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-
-    // Implementação
-    const implementacaoRef = card9Ref.collection('detalhes').doc('implementacao');
-    batch.set(implementacaoRef, {
-      title: "Implementação",
-      description: "Como operacionalizar as medidas preventivas",
-      order: 5,
-      data: implementacao,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-
-    // Metas e indicadores
-    const metasRef = card9Ref.collection('detalhes').doc('metas');
-    batch.set(metasRef, {
-      title: "Metas e Indicadores",
-      description: "Objetivos quantitativos para prevenção",
-      order: 6,
-      data: metas,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      data: prevencao5w2h,
+      createdAt: timestamp,
+      updatedAt: timestamp,
     });
 
     await batch.commit();
 
-    console.log('✅ Subcoleção detalhes populada com sucesso em card_9!');
-    console.log('📊 Documentos criados em infoCards/card_9/detalhes:');
-    console.log('  - estrategias');
-    console.log('  - locais');
-    console.log('  - momentos');
-    console.log('  - responsaveis');
-    console.log('  - implementacao');
-    console.log('  - metas');
+    console.log(
+      '✅ Documento "prevencao-5w2h" criado com sucesso em infoCards/card_9/detalhes.'
+    );
 
-    // Verificar se os dados foram inseridos
-    const snapshot = await card9Ref.collection('detalhes').get();
-    console.log(`🔍 Verificação: ${snapshot.size} documentos encontrados na subcoleção`);
-
+    const snapshot = await card9Ref.collection("detalhes").get();
+    console.log(
+      `🔍 Verificação: ${snapshot.size} documentos encontrados na subcoleção`
+    );
   } catch (error) {
-    console.error('❌ Erro ao popular a subcoleção:', error);
+    console.error("❌ Erro ao popular a subcoleção:", error);
   }
 }
 
 async function clearPrevencao() {
   try {
-    console.log('🗑️ Limpando subcoleção detalhes do card_9...');
+    console.log("🗑️ Limpando subcoleção detalhes do card_9...");
 
-    const card9Ref = db.collection('infoCards').doc('card_9');
-    const snapshot = await card9Ref.collection('detalhes').get();
+    const card9Ref = db.collection("infoCards").doc("card_9");
+    const snapshot = await card9Ref.collection("detalhes").get();
     const batch = db.batch();
 
     snapshot.docs.forEach((doc) => {
@@ -116,24 +48,24 @@ async function clearPrevencao() {
     });
 
     await batch.commit();
-    console.log('✅ Subcoleção detalhes do card_9 limpa com sucesso!');
-
+    console.log("✅ Subcoleção detalhes do card_9 limpa com sucesso!");
   } catch (error) {
-    console.error('❌ Erro ao limpar a subcoleção:', error);
+    console.error("❌ Erro ao limpar a subcoleção:", error);
   }
 }
 
 async function listPrevencao() {
   try {
-    console.log('📋 Listando documentos da subcoleção detalhes do card_9:');
+    console.log("📋 Listando documentos da subcoleção detalhes do card_9:");
 
-    const card9Ref = db.collection('infoCards').doc('card_9');
-    const snapshot = await card9Ref.collection('detalhes')
-      .orderBy('order', 'asc')
+    const card9Ref = db.collection("infoCards").doc("card_9");
+    const snapshot = await card9Ref
+      .collection("detalhes")
+      .orderBy("order", "asc")
       .get();
 
     if (snapshot.empty) {
-      console.log('Nenhum documento encontrado.');
+      console.log("Nenhum documento encontrado.");
       return;
     }
 
@@ -144,18 +76,30 @@ async function listPrevencao() {
         console.log(`   ${data.description}`);
       }
     });
-
   } catch (error) {
-    console.error('❌ Erro ao listar documentos da subcoleção:', error);
+    console.error("❌ Erro ao listar documentos da subcoleção:", error);
   }
 }
 
 async function getPrevencaoDetails() {
   try {
-    console.log('🔍 Detalhes da subcoleção detalhes do card_9:');
+    console.log("🔍 Detalhes da subcoleção detalhes do card_9:");
 
-    const card9Ref = db.collection('infoCards').doc('card_9');
-    const snapshot = await card9Ref.collection('detalhes').get();
+    const card9Ref = db.collection("infoCards").doc("card_9");
+    const snapshot = await card9Ref.collection("detalhes").get();
+
+    const summarizeStructure = (node, path = []) => {
+      if (Array.isArray(node)) {
+        console.log(`     ${path.join(" > ")}: ${node.length} itens`);
+        return;
+      }
+
+      if (node && typeof node === "object") {
+        Object.entries(node).forEach(([key, value]) => {
+          summarizeStructure(value, [...path, key]);
+        });
+      }
+    };
 
     for (const doc of snapshot.docs) {
       const data = doc.data();
@@ -164,19 +108,16 @@ async function getPrevencaoDetails() {
 
       if (data.data && Array.isArray(data.data)) {
         console.log(`   Itens: ${data.data.length}`);
-      } else if (data.data && typeof data.data === 'object') {
+      } else if (data.data && typeof data.data === "object") {
         const keys = Object.keys(data.data);
-        console.log(`   Seções: ${keys.join(', ')}`);
-        keys.forEach(key => {
-          if (Array.isArray(data.data[key])) {
-            console.log(`     ${key}: ${data.data[key].length} itens`);
-          }
+        console.log(`   Seções principais: ${keys.join(", ")}`);
+        keys.forEach((key) => {
+          summarizeStructure(data.data[key], [key]);
         });
       }
     }
-
   } catch (error) {
-    console.error('❌ Erro ao obter detalhes da subcoleção:', error);
+    console.error("❌ Erro ao obter detalhes da subcoleção:", error);
   }
 }
 
@@ -186,32 +127,34 @@ async function main() {
   const command = args[0];
 
   switch (command) {
-    case 'populate':
+    case "populate":
       await populatePrevencao();
       break;
-    case 'clear':
+    case "clear":
       await clearPrevencao();
       break;
-    case 'list':
+    case "list":
       await listPrevencao();
       break;
-    case 'details':
+    case "details":
       await getPrevencaoDetails();
       break;
-    case 'reset':
+    case "reset":
       await clearPrevencao();
       await populatePrevencao();
       break;
     default:
-      console.log('📖 Comandos disponíveis para subcoleção detalhes do card_9:');
-      console.log('  populate - Popula a subcoleção com os dados');
-      console.log('  clear    - Limpa todos os documentos da subcoleção');
-      console.log('  list     - Lista todos os documentos da subcoleção');
-      console.log('  details  - Mostra detalhes dos documentos');
-      console.log('  reset    - Limpa e popula novamente a subcoleção');
-      console.log('');
-      console.log('💡 Exemplo: node populate-prevencao.js populate');
-      console.log('🏗️ Estrutura: infoCards/card_9/detalhes/[documentos]');
+      console.log(
+        "📖 Comandos disponíveis para subcoleção detalhes do card_9:"
+      );
+      console.log("  populate - Popula a subcoleção com os dados");
+      console.log("  clear    - Limpa todos os documentos da subcoleção");
+      console.log("  list     - Lista todos os documentos da subcoleção");
+      console.log("  details  - Mostra detalhes dos documentos");
+      console.log("  reset    - Limpa e popula novamente a subcoleção");
+      console.log("");
+      console.log("💡 Exemplo: node populate-prevencao.js populate");
+      console.log("🏗️ Estrutura: infoCards/card_9/detalhes/[documentos]");
   }
 
   process.exit(0);
