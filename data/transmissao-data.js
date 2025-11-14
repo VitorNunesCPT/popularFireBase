@@ -1,232 +1,79 @@
-// Dados detalhados sobre transmissão da tuberculose
+// Conteúdo estruturado estritamente com base em `data/new-transmissao.md`
 
-const mecanismoTransmissao = [
-  {
-    etapa: "1. Pessoa Bacilífera",
-    descricao: "Paciente com TB pulmonar elimina bacilos",
-    detalhes: "Tosse, espirro, fala produzem gotículas",
-    risco: "Alto",
+const transmissao5w2h = {
+  overview: {
+    contexto:
+      "A transmissão da Tuberculose (TB) é central para a epidemiologia e o controle da doença, sendo alvo das estratégias de saúde pública para interromper a cadeia de contágio.",
+    metodologia:
+      "Avaliação da transmissão utilizando o método 5W2H a partir das informações fornecidas.",
   },
-  {
-    etapa: "2. Aerossóis no Ar",
-    descricao: "Gotículas permanecem suspensas no ambiente",
-    detalhes: "Duração: 5-12 horas (conforme ventilação)",
-    risco: "Variável",
+  what: {
+    descricao:
+      "O que é transmitido é o agente etiológico, a bactéria Mycobacterium tuberculosis (Bacilo de Koch – BK), responsável pela doença infecciosa que atinge o sistema respiratório.",
   },
-  {
-    etapa: "3. Inalação",
-    descricao: "Outras pessoas inalam as gotículas infectadas",
-    detalhes: "Especialmente em locais mal ventilados",
-    risco: "Alto",
+  why: {
+    motivos: [
+      "Diagnóstico precoce e tratamento correto dos casos bacilíferos interrompem a cadeia de transmissão e reduzem a incidência da doença a longo prazo.",
+      "O abandono do tratamento ou o controle ineficaz mantêm a transmissão e elevam o risco de resistência medicamentosa e de óbitos.",
+      "A TB é altamente transmissível, especialmente em populações vulneráveis como Pessoas em Situação de Rua.",
+    ],
   },
-  {
-    etapa: "4. Infecção",
-    descricao: "M. tuberculosis se instala nos pulmões",
-    detalhes: "Pode evoluir para doença ativa ou latente",
-    risco: "Moderado",
+  where: {
+    via: "Transmissão prioritária por via aérea ou respiratória.",
+    aspectos: [
+      "A bactéria é exalada em aerossóis durante tosse, fala ou espirro, formando gotículas de Pflüger que secam rapidamente e se transformam em núcleos de Wells (<5-10 μm) contendo um a dois bacilos.",
+      "Núcleos de Wells podem permanecer em suspensão no ar por muitas horas, alcançar os alvéolos e provocar primo-infecção; ventilação adequada em moradia e trabalho reduz o risco.",
+      "Em contextos como a pandemia de COVID-19, a permanência prolongada em espaços pequenos e mal ventilados aumenta o risco de disseminação.",
+      "Bacilos depositados em roupas, lençóis, copos e outros objetos dificilmente se dispersam em aerossóis e não desempenham papel relevante na transmissão.",
+    ],
   },
-];
-
-const fatoresRisco = [
-  {
-    fator: "Ventilação Inadequada",
-    impacto: "Muito Alto",
-    descricao: "Ambientes fechados concentram aerossóis",
-    medida: "Ventilação natural/mecânica adequada",
+  when: {
+    momentos: [
+      "O risco de transmissão persiste enquanto o paciente elimina bacilos no escarro.",
+      "Após cerca de 15 dias (duas a três semanas) de tratamento efetivo, a capacidade de transmissão encontra-se muito reduzida.",
+      "A cessação da transmissibilidade deve ser confirmada por exame laboratorial, especialmente baciloscopia de escarro de controle.",
+    ],
   },
-  {
-    fator: "Aglomeração",
-    impacto: "Alto",
-    descricao: "Muitas pessoas em espaço reduzido",
-    medida: "Controle de fluxo, distanciamento",
+  who: {
+    casoFonte: {
+      descricao:
+        "A transmissão ocorre a partir de pessoas com TB pulmonar ou laríngea que eliminam bacilos no ambiente.",
+      detalhes: [
+        "Bacilíferos apresentam baciloscopia positiva no escarro e têm maior capacidade de transmissão, mas cultura e TRM-TB positivos também indicam potencial de transmissão.",
+        "Crianças com TB pulmonar geralmente têm baciloscopia negativa e pouca importância na cadeia de transmissão.",
+      ],
+    },
+    pessoasEmRisco: {
+      probabilidade:
+        "Estima-se que 10% das pessoas infectadas adoecem (5% nos dois primeiros anos e 5% ao longo da vida na ausência de tratamento preventivo).",
+      grupos: [
+        "Contatos em casa, trabalho, instituições e escolas.",
+        "PVHIV, PPL, PSR, indígenas e profissionais de saúde.",
+        "Risco de TB ativa 20 vezes superior em PVHIV em comparação à população geral.",
+        "Incidência entre a PSR pode ser até 56 vezes maior que a média nacional.",
+      ],
+    },
   },
-  {
-    fator: "Tempo de Exposição",
-    impacto: "Alto",
-    descricao: "Maior tempo = maior risco",
-    medida: "Agilizar atendimento de SR",
+  how: {
+    medidas: [
+      "Busca ativa de casos para identificar precocemente bacilíferos e interromper a cadeia de transmissão.",
+      "Identificação e fluxo rápido do Sintomático Respiratório (SR) ou pessoa com TB pulmonar ativa.",
+      "Controle de contatos para encontrar precocemente casos e recém-infectados.",
+      "Educação em saúde orientando sobre etiqueta da tosse.",
+      "Medidas administrativas como oferta de máscara cirúrgica ao SR e priorização do atendimento desde a triagem.",
+      "Controle ambiental garantindo ventilação adequada e reduzindo o tempo de permanência do paciente bacilífero na instituição.",
+      "Proteção profissional com uso de máscaras PFF2 ou N95 em áreas de alto risco, como laboratórios com cultura.",
+    ],
   },
-  {
-    fator: "Carga Bacilar",
-    impacto: "Muito Alto",
-    descricao: "Baciloscopia positiva = maior transmissão",
-    medida: "Diagnóstico e tratamento precoces",
+  howMuch: {
+    indicadores: [
+      "O tratamento da Infecção Latente pelo M. tuberculosis (ILTB) com isoniazida reduz o risco de adoecimento em 60% a 90%.",
+      "O tempo entre sintomas sugestivos e diagnóstico é de aproximadamente 1 semana na busca ativa contra 6,9 semanas na busca passiva, reduzindo a exposição comunitária ao paciente bacilífero.",
+      "Apesar da infecção, apenas cerca de 10% das pessoas expostas adoecem; a primo-infecção é comum em crianças e imunossuprimidos, geralmente com baixa transmissibilidade.",
+    ],
   },
-  {
-    fator: "Ausência de Tratamento",
-    impacto: "Máximo",
-    descricao: "Paciente não tratado mantém transmissão",
-    medida: "Busca ativa, início imediato do tratamento",
-  },
-];
-
-const locaisRisco = [
-  {
-    local: "Serviços de Saúde",
-    risco: "Muito Alto",
-    populacao: "Profissionais, pacientes, visitantes",
-    medidas: ["Triagem de SR", "Ventilação adequada", "Máscaras PFF2/N95", "Fluxo ágil"],
-  },
-  {
-    local: "Prisões",
-    risco: "Muito Alto",
-    populacao: "Pessoas privadas de liberdade",
-    medidas: ["Rastreamento 2x/ano", "Isolamento respiratório", "Ventilação", "Busca ativa"],
-  },
-  {
-    local: "Domicílios",
-    risco: "Alto",
-    populacao: "Familiares, contatos íntimos",
-    medidas: ["Investigação de contatos", "Ventilação natural", "Etiqueta da tosse"],
-  },
-  {
-    local: "Albergues/Asilos",
-    risco: "Alto",
-    populacao: "Pessoas em situação de vulnerabilidade",
-    medidas: ["Triagem regular", "Isolamento de casos", "Ventilação", "Educação"],
-  },
-  {
-    local: "Hospitais (UTI/Emergência)",
-    risco: "Muito Alto",
-    populacao: "Pacientes graves, profissionais",
-    medidas: ["Isolamento respiratório", "Pressão negativa", "EPI adequado"],
-  },
-];
-
-const medidasControle = {
-  administrativas: [
-    "Identificação rápida de sintomáticos respiratórios",
-    "Educação sobre etiqueta da tosse",
-    "Oferta de máscara cirúrgica para SR",
-    "Agilização do fluxo de atendimento",
-    "Redução do tempo em áreas comuns",
-    "Educação permanente de profissionais",
-    "Protocolos de triagem e isolamento",
-  ],
-  ambientais: [
-    "Ventilação natural adequada",
-    "Ventilação mecânica quando necessário",
-    "Uso de luz solar (bactericida)",
-    "Isolamento respiratório com pressão negativa",
-    "Renovação do ar (mínimo 6 trocas/hora)",
-    "Separação de fluxos (SR vs outros pacientes)",
-    "Manutenção de sistemas de ventilação",
-  ],
-  protecao: [
-    "Máscaras PFF2/N95 para profissionais",
-    "Máscaras cirúrgicas para pacientes SR",
-    "EPI adequado em procedimentos de risco",
-    "Treinamento sobre uso correto de EPI",
-    "Teste de vedação de máscaras",
-    "Substituição regular de equipamentos",
-  ],
 };
 
-const cronologiaTransmissao = [
-  {
-    periodo: "Antes do Tratamento",
-    transmissibilidade: 100,
-    descricao: "Paciente bacilífero com máxima capacidade de transmissão",
-    cor: "bg-red-500",
-  },
-  {
-    periodo: "1ª Semana de Tratamento",
-    transmissibilidade: 70,
-    descricao: "Redução inicial da carga bacilar",
-    cor: "bg-orange-500",
-  },
-  {
-    periodo: "2ª Semana de Tratamento",
-    transmissibilidade: 30,
-    descricao: "Redução significativa da transmissibilidade",
-    cor: "bg-yellow-500",
-  },
-  {
-    periodo: "3ª Semana de Tratamento",
-    transmissibilidade: 10,
-    descricao: "Transmissibilidade muito baixa",
-    cor: "bg-green-500",
-  },
-  {
-    periodo: "Após 3 Semanas",
-    transmissibilidade: 5,
-    descricao: "Risco mínimo de transmissão",
-    cor: "bg-green-600",
-  },
-];
-
-const criteriosQuantitativos = [
-  {
-    parametro: "Duração da Tosse (SR)",
-    populacaoGeral: "≥2-3 semanas",
-    gruposRisco: "Qualquer duração",
-    observacao: "Contatos, PVHIV, PPL, PSR",
-  },
-  {
-    parametro: "Renovação do Ar",
-    populacaoGeral: "6 trocas/hora",
-    gruposRisco: "≥12 trocas/hora",
-    observacao: "Isolamento respiratório",
-  },
-  {
-    parametro: "Tempo para Não Transmissão",
-    populacaoGeral: "2-3 semanas",
-    gruposRisco: "Variável",
-    observacao: "Com tratamento efetivo",
-  },
-  {
-    parametro: "Permanência no Ambiente",
-    populacaoGeral: "5-12 horas",
-    gruposRisco: "Até 12 horas",
-    observacao: "Conforme ventilação/luz",
-  },
-  {
-    parametro: "Frequência TDO",
-    populacaoGeral: "≥3x/semana",
-    gruposRisco: "Diário",
-    observacao: "Para reduzir carga bacilar",
-  },
-];
-
-const populacoesVulneraveis = [
-  {
-    grupo: "Profissionais de Saúde",
-    risco: "Ocupacional",
-    exposicao: "Diária",
-    protecao: "EPI, ventilação, protocolos",
-  },
-  {
-    grupo: "Contatos Domiciliares",
-    risco: "Íntimo",
-    exposicao: "Prolongada",
-    protecao: "Investigação, ventilação natural",
-  },
-  {
-    grupo: "Pessoas Privadas de Liberdade",
-    risco: "Institucional",
-    exposicao: "Contínua",
-    protecao: "Rastreamento, isolamento",
-  },
-  {
-    grupo: "Pessoas em Situação de Rua",
-    risco: "Social",
-    exposicao: "Variável",
-    protecao: "Busca ativa, abrigos ventilados",
-  },
-  {
-    grupo: "PVHIV",
-    risco: "Imunológico",
-    exposicao: "Qualquer",
-    protecao: "Diagnóstico precoce, TARV",
-  },
-];
-
 module.exports = {
-  mecanismoTransmissao,
-  fatoresRisco,
-  locaisRisco,
-  medidasControle,
-  cronologiaTransmissao,
-  criteriosQuantitativos,
-  populacoesVulneraveis,
+  transmissao5w2h,
 };
