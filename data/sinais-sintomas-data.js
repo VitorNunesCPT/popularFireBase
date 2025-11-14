@@ -1,293 +1,214 @@
-// Dados detalhados sobre sinais e sintomas da tuberculose
+// Conteúdo estruturado estritamente com base em `data/new-sinais-sintomas-data.md`
 
-const sintomasClassicos = [
-  {
-    sintoma: "Tosse Persistente",
-    descricao: "Seca ou produtiva, principal sintoma respiratório",
-    duracao: "≥2-3 semanas (população geral)",
-    observacao: "Qualquer duração em grupos de risco",
-    frequencia: 85,
+const sinais_valiacao5w2h = {
+  overview: {
+    destaque:
+      "A tuberculose pode acometer diversos órgãos e sistemas, sendo a forma pulmonar a mais frequente e relevante pela sua capacidade de transmissão.",
   },
-  {
-    sintoma: "Febre Vespertina",
-    descricao: "Febre baixa, geralmente no final da tarde",
-    duracao: "Persistente por semanas",
-    observacao: "Pode ser o único sintoma em crianças",
-    frequencia: 70,
+  what: {
+    descricao:
+      "Os sintomas variam conforme a forma clínica (pulmonar ou extrapulmonar) e a faixa etária do paciente.",
+    adultosAdolescentes: {
+      contexto: "Sintomas clássicos da TB pulmonar (adultos e adolescentes).",
+      sintomas: [
+        { nome: "Tosse persistente", caracteristica: "Seca ou produtiva." },
+        { nome: "Febre", caracteristica: "Geralmente baixa, vespertina." },
+        {
+          nome: "Sudorese noturna",
+          caracteristica: "Relatada como sintoma clássico.",
+        },
+        { nome: "Emagrecimento", caracteristica: "Perda de peso." },
+        {
+          nome: "Anorexia",
+          caracteristica: "Diminuição de apetite (inapetência).",
+        },
+        {
+          nome: "Fadiga/Astenia/Adinamia",
+          caracteristica: "Sensação de cansaço persistente.",
+        },
+        {
+          nome: "Expectoração",
+          caracteristica: "Pode ser purulenta ou mucoide, com ou sem sangue.",
+        },
+        { nome: "Hemoptise", caracteristica: "Pode ocorrer em adolescentes." },
+      ],
+    },
+    infancia: {
+      faixaEtaria: "< 10 anos",
+      caracteristica:
+        "Sintomas geralmente inespecíficos que se confundem com infecções da infância.",
+      triadeClassica: ["Redução do apetite", "Perda de peso", "Tosse crônica"],
+      outrasManifestacoes: [
+        "Febre persistente (acima de 38ºC, ao final da tarde)",
+        "Tosse persistente com mais de duas semanas e piora progressiva",
+        "Pneumonia que não melhora com tratamento antimicrobiano habitual",
+        "Eritema nodoso",
+        "Conjuntivite flictenular",
+      ],
+    },
+    formasExtrapulmonares: [
+      {
+        forma: "TB Pleural",
+        sinaisESintomas: [
+          "Dor torácica pleurítica",
+          "Astenia",
+          "Emagrecimento",
+          "Anorexia",
+          "Febre",
+          "Tosse seca",
+        ],
+      },
+      {
+        forma: "TB Ganglionar Periférica",
+        sinaisESintomas: [
+          "Aumento subagudo, indolor e assimétrico das cadeias cervicais e/ou supraclaviculares",
+          "Forma extrapulmonar mais frequente em PVHIV e crianças",
+        ],
+      },
+      {
+        forma: "TB Osteoarticular (Mal de Pott)",
+        sinaisESintomas: [
+          "Dor lombar",
+          "Dor à palpação local",
+          "Sudorese noturna",
+        ],
+      },
+    ],
   },
-  {
-    sintoma: "Sudorese Noturna",
-    descricao: "Suor excessivo durante a noite",
-    duracao: "Recorrente",
-    observacao: "Independente da temperatura ambiente",
-    frequencia: 65,
+  why: {
+    motivos: [
+      "Os sintomas, especialmente a tosse prolongada, definem o Sintomático Respiratório (SR) que deve ser investigado.",
+      "Diagnóstico precoce e tratamento correto interrompem a cadeia de transmissão do bacilo de Koch (BK) e reduzem a incidência da doença.",
+      "Pessoas leigas raramente associam tosse e expectoração à TB, atrasando o diagnóstico e o início do tratamento.",
+    ],
   },
-  {
-    sintoma: "Emagrecimento",
-    descricao: "Perda de peso não intencional",
-    duracao: "Progressiva",
-    observacao: ">10% peso habitual (PVHIV = imunodeficiência avançada)",
-    frequencia: 60,
+  when: {
+    criteriosTosse: [
+      {
+        populacao: "População Geral Adscrita (Busca Ativa)",
+        duracao: "3 semanas ou mais",
+        contexto: "Comunidade, visitas domiciliares, atividades comunitárias.",
+      },
+      {
+        populacao: "População Geral (Busca Passiva)",
+        duracao: "2 semanas ou mais",
+        contexto:
+          "Procura o serviço de saúde por qualquer motivo para controle de infecção e identificação rápida.",
+      },
+      {
+        populacao: "Populações Vulneráveis",
+        duracao: "Qualquer tempo de tosse",
+        contexto:
+          "PVHIV, contatos de TB ativa, População Privada de Liberdade (PPL), População em Situação de Rua (PSR), indígenas e profissionais de saúde.",
+      },
+    ],
+    rastreamentoPVHIV:
+      "Para PVHIV o rastreamento considera tosse, febre, emagrecimento ou sudorese noturna, independentemente da duração dos sintomas.",
   },
-];
-
-const sintomasFormas = {
-  primaria: [
-    {
-      sintoma: "Irritabilidade",
-      descricao: "Mudanças comportamentais em crianças",
-      especificidade: "Comum em crianças",
+  who: {
+    definicaoSuspeito:
+      "Qualquer pessoa com sintomas ou sinais sugestivos de TB, em particular com tosse de longa duração.",
+    gruposComApresentacaoAtipica: [
+      {
+        grupo: "Crianças (< 10 anos)",
+        caracteristica:
+          "Formas pulmonares geralmente abacilíferas, com sintomas inespecíficos.",
+      },
+      {
+        grupo: "PVHIV/Imunossuprimidos",
+        caracteristica:
+          "Apresentação influenciada pelo grau de imunossupressão, com predominância de sintomas sistêmicos, padrão radiológico atípico e baciloscopia frequentemente negativa.",
+      },
+      {
+        grupo: "Idosos",
+        caracteristica:
+          "Podem apresentar febre de origem obscura, fadiga, baixa atenção, baixa mobilidade, delírio e ausência de febre, com acometimento dos segmentos inferiores e menor ocorrência de cavidades.",
+      },
+    ],
+  },
+  how: {
+    avaliacaoClinicaEpidemiologica: [
+      {
+        etapa: "História clínica",
+        descricao: "Inclui avaliação dos sintomas e sinais sugestivos de TB.",
+      },
+      {
+        etapa: "História epidemiológica",
+        descricao:
+          "Destaca o histórico de contato com adulto tuberculoso (focobacilífero).",
+      },
+      {
+        etapa: "Exames",
+        descricao:
+          "Abrange interpretação do teste tuberculínico (PPD), achados radiológicos e pesquisa do Mycobacterium tuberculosis (escarro, lavado gástrico etc.).",
+      },
+    ],
+    classificacaoInfantil: {
+      descricao:
+        "Sistema de pontuação utilizado devido à dificuldade de confirmação bacteriológica na infância.",
+      criteriosPontuacao: [
+        {
+          criterio: "Quadro clínico",
+          detalhes:
+            "Febre ou sintomas como tosse, adinamia, expectoração, emagrecimento e sudorese por mais de 2 semanas",
+          pontuacao: "+15",
+        },
+        {
+          criterio: "Quadro radiológico",
+          detalhes:
+            "Adenomegalia hilar ou padrão miliar inalterado por mais de 2 semanas, ou condensação/infiltrado sem melhora com antibióticos",
+          pontuacao: "+15",
+        },
+        {
+          criterio: "Contato com adulto tuberculoso",
+          detalhes: "Contato próximo nos últimos 2 anos",
+          pontuacao: "+10",
+        },
+        {
+          criterio: "Teste tuberculínico (PT)",
+          detalhes: "Maior ou igual a 15 mm",
+          pontuacao: "+15",
+        },
+      ],
+      interpretacaoPontuacao: [
+        {
+          faixa: "≥ 40 pontos",
+          significado: "Diagnóstico muito provável",
+        },
+        {
+          faixa: "30 a 35 pontos",
+          significado:
+            "Diagnóstico possível, com recomendação de iniciar tratamento",
+        },
+      ],
     },
-    {
-      sintoma: "Inapetência",
-      descricao: "Perda do apetite, recusa alimentar",
-      especificidade: "Pode ser sutil",
+  },
+  howMuch: {
+    classificacaoRiscoAPS: [
+      {
+        nivel: "Atendimento Imediato (Alto Risco)",
+        criterios:
+          "Comprometimento das vias aéreas, dispneia grave, sibilos, sinais de choque, hemoptise, alteração do nível de consciência ou taquipneia (>30 irpm) em adultos, uso de musculatura acessória ou tiragem acentuada em crianças.",
+      },
+      {
+        nivel: "Atendimento Prioritário",
+        criterios: "Investigar tuberculose imediatamente.",
+      },
+      {
+        nivel: "Atendimento no Dia",
+        criterios: "Avaliar e tratar o quadro agudo e investigar TB.",
+      },
+    ],
+    duracaoPersistencia: {
+      destaque:
+        "A persistência dos sintomas é característica chave da TB; tosse por três semanas ou mais é o principal critério para SR na população geral.",
+      comparativo: "Em doenças como a COVID-19 o início dos sintomas é rápido.",
+      alerta:
+        "A tuberculose exige olhar atento porque seus sintomas podem ser 'invisíveis'; não ignorar sintomas persistentes ou inespecíficos, especialmente a tosse crônica.",
     },
-    {
-      sintoma: "Febre baixa",
-      descricao: "Temperatura elevada discreta",
-      especificidade: "Nem sempre presente",
-    },
-    {
-      sintoma: "Tosse ausente/leve",
-      descricao: "Tosse pode não estar presente",
-      especificidade: "Diferente do adulto",
-    },
-  ],
-  secundaria: [
-    {
-      sintoma: "Tosse produtiva",
-      descricao: "Com expectoração, pode ter sangue",
-      especificidade: "Mais comum em adultos",
-    },
-    {
-      sintoma: "Dor torácica",
-      descricao: "Dor no peito ao respirar ou tossir",
-      especificidade: "Relacionada à inflamação",
-    },
-    {
-      sintoma: "Dispneia",
-      descricao: "Falta de ar, dificuldade respiratória",
-      especificidade: "Em casos mais avançados",
-    },
-    {
-      sintoma: "Hemoptise",
-      descricao: "Sangue no escarro",
-      especificidade: "Indica lesão pulmonar",
-    },
-  ],
-  miliar: [
-    {
-      sintoma: "Febre alta",
-      descricao: "Temperatura elevada persistente",
-      especificidade: "Forma disseminada",
-    },
-    {
-      sintoma: "Prostração",
-      descricao: "Fraqueza extrema, mal-estar geral",
-      especificidade: "Comprometimento sistêmico",
-    },
-    {
-      sintoma: "Perda de peso acentuada",
-      descricao: "Emagrecimento rápido e significativo",
-      especificidade: "Mais grave que outras formas",
-    },
-    {
-      sintoma: "Sintomas neurológicos",
-      descricao: "Quando há acometimento do SNC",
-      especificidade: "Pode incluir convulsões",
-    },
-  ],
+  },
 };
 
-const sintomasPVHIV = [
-  {
-    sintoma: "Tosse",
-    criterio: "Qualquer duração",
-    observacao: "Independente do tempo",
-    prioridade: "Alta",
-  },
-  {
-    sintoma: "Febre",
-    criterio: "Qualquer padrão",
-    observacao: "Pode ser baixa ou alta",
-    prioridade: "Alta",
-  },
-  {
-    sintoma: "Perda de peso",
-    criterio: ">10% peso habitual",
-    observacao: "Indica imunodeficiência avançada",
-    prioridade: "Muito Alta",
-  },
-  {
-    sintoma: "Sudorese noturna",
-    criterio: "Recorrente",
-    observacao: "Sintoma sistêmico importante",
-    prioridade: "Alta",
-  },
-];
-
-const locaisAvaliacao = [
-  {
-    local: "Atenção Básica (ESF/UBS)",
-    atividade: "Busca ativa permanente de SR",
-    frequencia: "Todas as consultas",
-    populacao: "População geral adscrita",
-  },
-  {
-    local: "Hospitais/Emergência",
-    atividade: "Triagem de sintomáticos respiratórios",
-    frequencia: "Admissão e durante internação",
-    populacao: "Pacientes hospitalizados",
-  },
-  {
-    local: "Serviços para PVHIV",
-    atividade: "Rastreamento dos 4 sintomas",
-    frequencia: "Todas as visitas",
-    populacao: "Pessoas vivendo com HIV",
-  },
-  {
-    local: "Sistema Prisional",
-    atividade: "Rastreamento de massa",
-    frequencia: "Ingresso + 6 meses/1 ano",
-    populacao: "Pessoas privadas de liberdade",
-  },
-  {
-    local: "Consultório na Rua",
-    atividade: "Busca ativa oportunística",
-    frequencia: "Todos os contatos",
-    populacao: "Pessoas em situação de rua",
-  },
-];
-
-const criteriosSR = [
-  {
-    populacao: "População Geral (ESF)",
-    criterio: "≥3 semanas",
-    contexto: "Busca ativa na comunidade",
-    observacao: "Critério mais restritivo",
-  },
-  {
-    populacao: "População Geral (Serviços)",
-    criterio: "≥2 semanas",
-    contexto: "Procura espontânea por serviços",
-    observacao: "Controle de infecção",
-  },
-  {
-    populacao: "Contatos de TB",
-    criterio: "Qualquer duração",
-    contexto: "Investigação de contatos",
-    observacao: "Prioridade máxima",
-  },
-  {
-    populacao: "PVHIV",
-    criterio: "Qualquer duração",
-    contexto: "Todas as consultas",
-    observacao: "Rastreamento obrigatório",
-  },
-  {
-    populacao: "PPL/PSR/Institucionalizados",
-    criterio: "Qualquer duração",
-    contexto: "Populações vulneráveis",
-    observacao: "Alto risco epidemiológico",
-  },
-];
-
-const examesComplementares = [
-  {
-    exame: "Baciloscopia",
-    indicacao: "Sintomáticos respiratórios",
-    interpretacao: "+, ++, +++ indica carga bacilar",
-    observacao: "Confirma transmissibilidade",
-  },
-  {
-    exame: "TRM-TB",
-    indicacao: "Diagnóstico rápido",
-    interpretacao: "Detecta M. tuberculosis e resistência",
-    observacao: "Resultado em 2 horas",
-  },
-  {
-    exame: "Radiografia de Tórax",
-    indicacao: "Todos os casos suspeitos",
-    interpretacao: "Cavidades, infiltrados, nódulos",
-    observacao: "Pode ser normal em 15% dos casos",
-  },
-  {
-    exame: "Prova Tuberculínica",
-    indicacao: "Contatos, ILTB",
-    interpretacao: "≥5mm (contatos), ≥10mm (geral)",
-    observacao: "Conversão: incremento ≥10mm",
-  },
-  {
-    exame: "ADA Pleural",
-    indicacao: "Suspeita TB pleural",
-    interpretacao: ">40 U/L sugere TB",
-    observacao: "Diagnóstico diferencial necessário",
-  },
-];
-
-const monitoramentoTratamento = [
-  {
-    parametro: "Sintomas Respiratórios",
-    frequencia: "Mensal",
-    objetivo: "Melhora da tosse e dispneia",
-    criterio: "Redução progressiva",
-  },
-  {
-    parametro: "Sintomas Sistêmicos",
-    frequencia: "Mensal",
-    objetivo: "Resolução de febre e sudorese",
-    criterio: "Desaparecimento em 2-4 semanas",
-  },
-  {
-    parametro: "Peso Corporal",
-    frequencia: "Mensal",
-    objetivo: "Ganho de peso",
-    criterio: "Recuperação nutricional",
-  },
-  {
-    parametro: "Baciloscopia",
-    frequencia: "2º, 4º, 5º, 6º meses",
-    objetivo: "Negativação",
-    criterio: "Negativa a partir do 2º mês",
-  },
-];
-
-const sinaisAlerta = [
-  {
-    sinal: "Hemoptise volumosa",
-    gravidade: "Emergência",
-    acao: "Atendimento imediato",
-  },
-  {
-    sinal: "Dispneia intensa",
-    gravidade: "Grave",
-    acao: "Avaliação urgente",
-  },
-  {
-    sinal: "Febre alta persistente",
-    gravidade: "Moderada",
-    acao: "Investigação de complicações",
-  },
-  {
-    sinal: "Perda de peso >15%",
-    gravidade: "Grave",
-    acao: "Suporte nutricional urgente",
-  },
-  {
-    sinal: "Sintomas neurológicos",
-    gravidade: "Emergência",
-    acao: "Investigar TB meningoencefálica",
-  },
-];
-
 module.exports = {
-  sintomasClassicos,
-  sintomasFormas,
-  sintomasPVHIV,
-  locaisAvaliacao,
-  criteriosSR,
-  examesComplementares,
-  monitoramentoTratamento,
-  sinaisAlerta,
+  sinais_valiacao5w2h,
 };
