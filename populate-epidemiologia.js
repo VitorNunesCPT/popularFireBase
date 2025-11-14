@@ -7,7 +7,7 @@ async function populateEpidemiologia() {
 
     const batch = db.batch();
     const card11Ref = db.collection("infoCards").doc("card_11");
-    const docRef = card11Ref.collection("detalhes").doc("epidemiologia");
+    const docRef = card11Ref.collection("detalhes").doc("epidemiologia-5w2h");
     const timestamp = new Date();
 
     batch.set(docRef, {
