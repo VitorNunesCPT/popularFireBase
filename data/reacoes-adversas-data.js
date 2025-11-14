@@ -1,206 +1,106 @@
-// Dados detalhados sobre reações adversas aos medicamentos da tuberculose
+// Conteúdo estruturado estritamente com base em `data/new-reacoes-adversas.md`
 
-const reacoesMenores = [
-  {
-    reacao: "Mudança da coloração da urina",
-    frequencia: "Universal",
-    descricao: "Urina alaranjada/avermelhada (Rifampicina)",
-    manejo: "Orientação ao paciente, sem necessidade de intervenção",
+const reacoesAdversas5w2h = {
+  overview: {
+    contexto:
+      "A avaliação das reações adversas associadas ao tratamento da Tuberculose (TB) é crucial, pois a ocorrência desses eventos é um fator determinante para a adesão do paciente e o sucesso terapêutico.",
+    metodologia: "Reações Adversas da Tuberculose: Avaliação 5W2H.",
   },
-  {
-    reacao: "Intolerância digestiva",
-    frequencia: "40%",
-    descricao: "Náusea, vômito, epigastralgia",
-    manejo: "Reformular horário, tomar com alimentos, sintomáticos",
+  what: {
+    classificacao:
+      "As reações adversas são classificadas em dois grandes grupos.",
+    reacoesMenores: [
+      "Geralmente não requerem a suspensão do medicamento antiTB e podem ser manejadas na Atenção Primária.",
+      "Intolerância digestiva (náusea, vômito e epigastralgia), sendo Etambutol, Isoniazida, Pirazinamida e Rifampicina fármacos prováveis.",
+      "Suor/urina de cor avermelhada devido à Rifampicina.",
+      "Neuropatia periférica, comum com a Isoniazida e incomum com o Etambutol.",
+      "Prurido e exantema leve.",
+      "Dor articular associada à Isoniazida e Pirazinamida.",
+      "Hiperuricemia (com ou sem sintomas), associada ao Etambutol e Pirazinamida.",
+      "Cefaleia, ansiedade, euforia, insônia e depressão leve, associadas à Isoniazida.",
+    ],
+    reacoesMaiores: [
+      "Normalmente causam a suspensão do tratamento e exigem manejo especializado.",
+      "Hepatotoxicidade: dano hepático pode ser causado pela Pirazinamida (a mais tóxica), Isoniazida e Rifampicina, nessa ordem de toxicidade.",
+      "Hipersensibilidade ou exantema de moderada a grave; quando grave (plaquetopenia, anemia hemolítica, insuficiência renal), o medicamento suspeito não deve ser reintroduzido.",
+      "Alterações do sistema nervoso central, incluindo psicose, crise convulsiva, encefalopatia tóxica ou coma.",
+      "Alterações sanguíneas, nefrite e insuficiência renal.",
+      "Reações a esquemas especiais: fármacos de segunda linha para TB Drogarresistente causam alta frequência de reações adversas; a Linezolida pode causar acidose lática, e Etionamida e PAS podem causar hepatotoxicidade ou hipotireoidismo.",
+    ],
+    siri: {
+      descricao:
+        "A Síndrome Inflamatória da Reconstituição Imune (SIRI/SRI) é fenômeno inflamatório exacerbado em PVHIV após início da TARV.",
+      manifestacoes: [
+        "Piora paradoxal de lesões preexistentes de TB (agravamento de sintomas pulmonares ou imagens radiológicas) ou aparecimento de novos sinais/sintomas.",
+        "Aumento e/ou fistulização de linfonodos.",
+      ],
+      observacao: "Não é falha de tratamento da TB nem da TARV.",
+    },
   },
-  {
-    reacao: "Alterações cutâneas",
-    frequencia: "20%",
-    descricao: "Prurido, exantema leve",
-    manejo: "Anti-histamínicos, hidratação da pele",
+  why: {
+    motivos: [
+      "As reações adversas (junto com a dificuldade de acesso e os conflitos domésticos) são descritas como um dos principais fatores que levam à não adesão e abandono do tratamento, definido como ausência por 30 dias consecutivos.",
+      "A não adesão está associada ao aumento do risco de resistência aos medicamentos e de óbitos; o abandono pode levar ao desenvolvimento de resistência adquirida.",
+      "Garantir a continuidade do tratamento requer orientar sobre as reações e reforçar a necessidade de procurar o serviço imediatamente para que o caso seja avaliado e o abandono seja evitado.",
+    ],
   },
-  {
-    reacao: "Icterícia leve",
-    frequencia: "15%",
-    descricao: "Amarelamento leve de pele/mucosas",
-    manejo: "Monitoramento, avaliar função hepática",
+  where: {
+    locais: [
+      "Atenção Primária à Saúde (APS): as reações adversas menores devem ser manejadas na própria APS.",
+      "Referência Secundária: indicada para o manejo de efeitos adversos maiores e de toxicidade.",
+      "Referência Terciária: lida com a TB Drogarresistente (TB DR); se um esquema básico não puder ser reintroduzido após uma reação grave, um esquema especial deve ser indicado.",
+      "Hospitalização: recomendada em casos excepcionais, como intolerância incontrolável aos medicamentos em ambulatório, ou em caso de estado geral grave.",
+    ],
   },
-  {
-    reacao: "Dores articulares",
-    frequencia: "4%",
-    descricao: "Artralgia, principalmente grandes articulações",
-    manejo: "Anti-inflamatórios, analgésicos",
+  when: {
+    ocorrenciaEMonitoramento: [
+      "A maioria dos pacientes completa o tratamento sem reações relevantes.",
+      "As reações adversas maiores que levam à alteração definitiva do esquema terapêutico variam de 3% a 8%.",
+      "Recomenda-se o monitoramento laboratorial mensal (função hepática e renal) em pacientes de alto risco ou na presença de sinais/sintomas.",
+      "A SIRI ocorre mais frequentemente dentro de três meses após o início do tratamento da TB e, em PVHIV, geralmente dentro de 4 a 8 semanas após o início da TARV.",
+      "O início concomitante do tratamento da TB e da TARV é contraindicado, pois aumenta o risco de intolerância e reações adversas, piorando a adesão.",
+    ],
   },
-  {
-    reacao: "Neuropatia periférica",
-    frequencia: "Comum",
-    descricao: "Formigamento, dormência (Isoniazida)",
-    manejo: "Piridoxina 50-200mg/dia",
+  who: {
+    fatoresRisco: [
+      "Idade (a partir da quarta década).",
+      "Dependência química ao álcool (ingestão diária de álcool > 80g).",
+      "Desnutrição (perda de mais de 15% do peso corporal).",
+      "História de doença hepática prévia.",
+      "Coinfecção pelo HIV, especialmente em fase avançada de imunossupressão.",
+    ],
+    riscosPVHIV: [
+      "O tratamento da coinfecção TB-HIV exige atenção redobrada devido ao maior risco de toxicidade medicamentosa e às interações entre os fármacos antiTB e os antirretrovirais (ARV).",
+      "O uso concomitante acarreta a sobreposição de efeitos adversos, como neuropatia periférica e distúrbios neurológicos (confusão mental, insônia, tonturas).",
+    ],
   },
-];
-
-const reacoesMaiores = [
-  {
-    reacao: "Hepatite medicamentosa",
-    gravidade: "Grave",
-    descricao: "Elevação significativa de enzimas hepáticas",
-    criterio: "TGO/TGP ≥3x LSN com sintomas ou ≥5x LSN sem sintomas",
-    manejo: "Suspensão imediata, reintrodução criteriosa",
+  how: {
+    manejoReacoesMenores: [
+      "Intolerância digestiva: recomenda-se reformular o horário da administração dos medicamentos, como tomá-los duas horas após o café da manhã.",
+      "Neuropatia periférica: deve ser prevenida ou tratada com a suplementação de Piridoxina (vitamina B6) na dosagem de 50mg/dia durante todo o tratamento; em crianças coinfetadas ou desnutridas, a dose recomendada é de 5 a 10 mg/dia.",
+      "Outras reações: administrar anti-histamínicos para prurido, analgésicos para dor articular e orientar dieta hipopurínica para hiperuricemia, podendo usar Alopurinol ou Colchicina.",
+    ],
+    manejoReacoesMaiores: [
+      "Suspender o tratamento e reintroduzir os medicamentos um a um após a resolução do quadro, ou substituir o esquema por um especial que exclua o fármaco causador.",
+      "Hepatotoxicidade: em casos de icterícia ou TGO/TGP 5x o limite superior da normalidade (LSN) (ou 3x LSN com sintomas), o tratamento deve ser suspenso; se houver doença hepática prévia com cirrose, recomenda-se o esquema 3SEO/9EO (Estreptomicina, Etambutol e Ofloxacino).",
+    ],
+    manejoSiri: [
+      "SIRI leve/moderada: pode ser tratada com sintomáticos ou anti-inflamatórios não hormonais.",
+      "SIRI moderada/grave: deve ser tratada com corticosteroides (1 a 2 mg/kg/dia de prednisona por duas semanas, seguida de redução lenta).",
+      "O benefício do início oportuno da TARV supera o risco da SIRI, que é um fenômeno manejável e com baixo risco de morte.",
+    ],
   },
-  {
-    reacao: "Hipersensibilidade grave",
-    gravidade: "Grave",
-    descricao: "Exantema extenso, anafilaxia",
-    criterio: "Reação cutânea extensa ou sistêmica",
-    manejo: "Suspensão definitiva do fármaco responsável",
+  howMuch: {
+    indicadores: [
+      "A frequência das reações adversas maiores varia de 3% a 8% dos casos.",
+      "A maioria das reações na TB DR é manejável, sendo que apenas 1% a 2% dos casos exigem a interrupção definitiva do medicamento.",
+      "50 mg/dia de Piridoxina é usado para prevenir a neuropatia periférica em adultos.",
+    ],
+    metafora:
+      "A vigilância das reações adversas é como o monitoramento constante de um sistema de alerta em uma usina de tratamento químico, detectando vazamentos (reações menores) e intervenções imediatas em caso de explosões (reações maiores), garantindo que o processo continue seguro e eficaz, e que a usina não seja abandonada antes de completar sua missão.",
   },
-  {
-    reacao: "Trombocitopenia",
-    gravidade: "Moderada",
-    descricao: "Redução significativa de plaquetas",
-    criterio: "Plaquetas <100.000/mm³",
-    manejo: "Suspensão, monitoramento hematológico",
-  },
-  {
-    reacao: "Sintomas psicóticos",
-    gravidade: "Grave",
-    descricao: "Alucinações, delírios, depressão grave",
-    criterio: "Alterações comportamentais significativas",
-    manejo: "Suspensão 1-4 semanas, antipsicóticos/antidepressivos",
-  },
-  {
-    reacao: "Acidose lática",
-    gravidade: "Grave",
-    descricao: "Complicação metabólica (Linezolida)",
-    criterio: "Lactato elevado com sintomas",
-    manejo: "Suspensão imediata, suporte intensivo",
-  },
-  {
-    reacao: "Distúrbios eletrolíticos",
-    gravidade: "Moderada",
-    descricao: "Hipopotassemia, hipomagnesemia",
-    criterio: "Alterações laboratoriais significativas",
-    manejo: "Reposição eletrolítica, monitoramento",
-  },
-];
-
-const fatoresRisco = [
-  {
-    fator: "Idade",
-    criterio: "≥40 anos (quarta década)",
-    risco: "Alto",
-    cuidados: "Monitoramento mais frequente",
-  },
-  {
-    fator: "Uso de álcool",
-    criterio: ">80g/dia",
-    risco: "Muito Alto",
-    cuidados: "Função hepática semanal",
-  },
-  {
-    fator: "Desnutrição",
-    criterio: "Perda >15% do peso",
-    risco: "Alto",
-    cuidados: "Suporte nutricional, doses ajustadas",
-  },
-  {
-    fator: "Doença hepática prévia",
-    criterio: "História de hepatopatia",
-    risco: "Muito Alto",
-    cuidados: "Esquemas alternativos, monitoramento intensivo",
-  },
-  {
-    fator: "HIV avançado",
-    criterio: "Imunossupressão grave",
-    risco: "Muito Alto",
-    cuidados: "Manejo conjunto TB-HIV, piridoxina obrigatória",
-  },
-];
-
-const estrategiasManejo = {
-  menores: [
-    "Orientação ao paciente sobre normalidade de alguns efeitos",
-    "Reformulação do horário de administração",
-    "Uso de medicação sintomática (anti-histamínicos, analgésicos)",
-    "Piridoxina para neuropatia periférica",
-    "Orientações dietéticas",
-    "Manutenção do esquema básico",
-  ],
-  maiores: [
-    "Suspensão imediata do(s) fármaco(s) responsável(is)",
-    "Reintrodução criteriosa após melhora clínica/laboratorial",
-    "Substituição por esquema especial se necessário",
-    "Medicação de suporte (antipsicóticos, antidepressivos)",
-    "Encaminhamento para unidade de referência",
-    "Notificação à Anvisa (VigiMed)",
-  ],
 };
 
-const frequenciasReacoes = [
-  { tipo: "Reações Maiores (Geral)", frequencia: 3, max: 8 },
-  { tipo: "Interrupção Definitiva (TB DR)", frequencia: 1, max: 2 },
-  { tipo: "Intolerância Digestiva", frequencia: 40, max: 40 },
-  { tipo: "Alterações Cutâneas", frequencia: 20, max: 20 },
-  { tipo: "Icterícia", frequencia: 15, max: 15 },
-  { tipo: "Dores Articulares", frequencia: 4, max: 4 },
-];
-
-const dosagensEspeciais = [
-  {
-    medicamento: "Piridoxina (padrão)",
-    dose: "50mg/dia",
-    indicacao: "Prevenção de neuropatia",
-  },
-  {
-    medicamento: "Piridoxina (com ARVs)",
-    dose: "até 200mg/dia",
-    indicacao: "PVHIV com risco aumentado",
-  },
-  {
-    medicamento: "Critério reintrodução",
-    dose: "<3x LSN",
-    indicacao: "Enzimas hepáticas para retomar tratamento",
-  },
-  {
-    medicamento: "Álcool (fator risco)",
-    dose: ">80g/dia",
-    indicacao: "Critério para alto risco hepatotoxicidade",
-  },
-];
-
-const monitoramentoEspecial = [
-  {
-    parametro: "Função Hepática",
-    frequencia: "Mensal ou mais frequente",
-    grupos: "Usuários de álcool, hepatopatas",
-    acao: "Suspensão se TGO/TGP ≥3x LSN + sintomas",
-  },
-  {
-    parametro: "Hemograma",
-    frequencia: "Mensal",
-    grupos: "TB DR, PVHIV",
-    acao: "Avaliar citopenias",
-  },
-  {
-    parametro: "Função Renal",
-    frequencia: "Mensal",
-    grupos: "Uso de aminoglicosídeos",
-    acao: "Ajuste de doses se necessário",
-  },
-  {
-    parametro: "Avaliação Neurológica",
-    frequencia: "A cada consulta",
-    grupos: "Uso de Isoniazida, Linezolida",
-    acao: "Piridoxina se neuropatia",
-  },
-];
-
 module.exports = {
-  reacoesMenores,
-  reacoesMaiores,
-  fatoresRisco,
-  estrategiasManejo,
-  frequenciasReacoes,
-  dosagensEspeciais,
-  monitoramentoEspecial,
+  reacoesAdversas5w2h,
 };
