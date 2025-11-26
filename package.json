@@ -18,6 +18,7 @@
     "populate:prevencao": "node populate-prevencao.js populate",
     "populate:tb-hiv": "node populate-tb-hiv.js populate",
     "populate:epidemiologia": "node populate-epidemiologia.js populate",
+    "populate:nutricao": "node populate-nutricao.js populate",
     "populate:all": "npm run populate:infocards && npm run populate:sinais && npm run populate:transmissao && npm run populate:diagnostico && npm run populate:tratamento && npm run populate:reacoes && npm run populate:interacoes && npm run populate:reacoes-tb && npm run populate:autocuidado && npm run populate:prevencao && npm run populate:tb-hiv && npm run populate:epidemiologia",
     "list:infocards": "node populate-firestore.js list",
     "list:sinais": "node populate-sinais-sintomas.js list",
