@@ -129,6 +129,12 @@ npm run populate:tb-hiv
 # Popular detalhes de epidemiologia (subcoleção do card_11)
 npm run populate:epidemiologia
 
+# Popular detalhes de nutrição (subcoleção do card_12)
+npm run populate:nutricao
+
+# Popular detalhes de manuais e diretrizes (subcoleção do card_13)
+npm run populate:manuais
+
 # Popular tudo de uma vez
 npm run populate:all
 
@@ -145,6 +151,8 @@ npm run list:autocuidado
 npm run list:prevencao
 npm run list:tb-hiv
 npm run list:epidemiologia
+npm run list:nutricao
+npm run list:manuais
 
 # Limpar coleções
 npm run clear:infocards
@@ -159,6 +167,8 @@ npm run clear:autocuidado
 npm run clear:prevencao
 npm run clear:tb-hiv
 npm run clear:epidemiologia
+npm run clear:nutricao
+npm run clear:manuais
 
 # Reset completo (limpa tudo e popula novamente)
 npm run reset:all
@@ -249,12 +259,19 @@ node populate-epidemiologia.js list
 node populate-epidemiologia.js clear
 node populate-epidemiologia.js details
 node populate-epidemiologia.js reset
+
+# Manuais e Diretrizes (subcoleção do card_13)
+node populate-manuais-diretrizes.js populate
+node populate-manuais-diretrizes.js list
+node populate-manuais-diretrizes.js clear
+node populate-manuais-diretrizes.js details
+node populate-manuais-diretrizes.js reset
 ```
 
 ## Estrutura dos dados
 
 ### Coleção `infoCards`
-Contém 11 documentos principais sobre tuberculose:
+Contém 13 documentos principais sobre tuberculose:
 
 1. **Sinais e Sintomas** - Essencial (danger) → `card_1`
 2. **Transmissão** - Importante (info) → `card_2`
@@ -267,6 +284,8 @@ Contém 11 documentos principais sobre tuberculose:
 9. **Prevenção** - Preventivo (teal) → `card_9`
 10. **TB-HIV (Coinfecção)** - Especializado (red) → `card_10`
 11. **Epidemiologia** - Contextual (blue) → `card_11`
+12. **Nutrição** - Suporte (green) → `card_12`
+13. **Manuais e Diretrizes** - Referência (indigo) → `card_13`
 
 ### Subcoleção `detalhes` do card_1 (Sinais e Sintomas)
 Estrutura: `infoCards/card_1/detalhes/[documentos]`
@@ -387,6 +406,25 @@ Estrutura: `infoCards/card_11/detalhes/[documentos]`
 6. **determinantes-sociais** - 5 fatores socioeconômicos associados à TB
 7. **metas-end-tb** - Progresso em direção às metas da Estratégia End TB (2015-2035)
 8. **comparacao-internacional** - Posição do Brasil entre os 10 países com maior carga
+
+### Subcoleção `detalhes` do card_13 (Manuais e Diretrizes)
+Estrutura: `infoCards/card_13/detalhes/[documentos]`
+
+1. **manuais** - Lista completa de 8 manuais e diretrizes oficiais (título, órgão, ano, URL, formato)
+2. **categorias** - Organização por categoria (Diretrizes, Planos, Epidemiologia, Municipais)
+3. **historico** - Histórico de atualizações por ano (2024, 2022, 2019, 2017)
+4. **metadados** - Informações gerais (total de documentos, documentos atuais, órgão principal)
+
+Cada manual contém:
+- **titulo** - Nome completo do documento
+- **descricao** - Resumo do conteúdo
+- **orgao** - Órgão responsável (Ministério da Saúde, SMS, etc.)
+- **ano** - Ano de publicação
+- **formato** - Tipo de arquivo (PDF)
+- **tamanho** - Tamanho do arquivo
+- **url** - Link direto para download
+- **isAtual** - Badge "Atual" para documentos vigentes
+- **order** - Ordem de exibição
 
 ---
 

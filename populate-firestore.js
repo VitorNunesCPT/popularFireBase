@@ -90,6 +90,22 @@ const infoCardsData = [
     theme: "blue",
     order: 11,
   },
+  {
+    title: "Nutrição",
+    description: "Cuidados nutricionais no tratamento",
+    iconName: "Apple",
+    status: "Suporte",
+    theme: "green",
+    order: 12,
+  },
+  {
+    title: "Manuais e Diretrizes",
+    description: "Documentos técnicos oficiais",
+    iconName: "BookOpen",
+    status: "Referência",
+    theme: "indigo",
+    order: 13,
+  },
 ];
 
 async function populateInfoCards() {
